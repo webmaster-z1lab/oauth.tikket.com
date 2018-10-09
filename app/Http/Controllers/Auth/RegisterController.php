@@ -62,13 +62,13 @@ class RegisterController extends Controller
             'phone' => 'nullable|digits_between:10,11',
             'is_whatsapp' => 'nullabe|boolean',
             'address' => 'nullable',
-            'address.street' => 'required|string|max:255',
-            'address.number' => 'required|integer|min:0',
+            'address.street' => 'nullable|string|max:255',
+            'address.number' => 'nullable|integer|min:0',
             'address.complement' => 'nullable|string|max:50',
-            'address.district' => 'required|string|max:50',
-            'address.city' => 'required|string|max:255',
-            'address.state' => 'required|string|max:100',
-            'address.postal_code' => 'required|digits:8'
+            'address.district' => 'nullable|string|max:50',
+            'address.city' => 'nullable|string|max:255',
+            'address.state' => 'nullable|string|max:100',
+            'address.postal_code' => 'nullable|digits:8'
         ]);
     }
 
