@@ -11,7 +11,7 @@ class UserObserver
      * @param User $user
      */
     public function creating(User $user) {
-        $user->user_id = Str::uuid()->toString();
+        $user->user_id = Str::orderedUuid()->toString();
         $user->username = kebab_case($user->name);
     }
 }

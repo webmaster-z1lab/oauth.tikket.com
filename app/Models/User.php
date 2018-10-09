@@ -79,6 +79,19 @@ class User extends Authenticatable implements VerifiableEmail
     }
 
     /**
+     * @return false|null|string
+     */
+    public function getFormattedAddressAttribute()
+    {
+        if (!$this->address()->exists()) {
+            return null;
+        }
+        $address = array_only($this->address->toArray(), ['street', 'number', 'complement', 'district', 'city', 'state', 'postal_code']);
+
+        return json_encode($address);
+    }
+
+    /**
      * @return string
      */
     public function getAuthIdentifierName()
