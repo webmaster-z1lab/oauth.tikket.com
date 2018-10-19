@@ -11,20 +11,25 @@
 |
 */
 
-Route::group(['namespace' => 'Auth'], function ()
+//Route::group(['namespace' => 'Auth'], function ()
+//{
+//    Route::post('login', 'LoginController@login')->middleware('guest');
+//
+//    Route::post('logout', 'LoginController@logout')->name('logout');
+//
+//    Route::group(['middleware' => 'guest', 'prefix' => 'password', 'as' => 'password.'], function ()
+//    {
+//        Route::post('email', 'ForgotPasswordController@sendResetLinkEmail')->name('email');
+//
+//        Route::post('reset', 'ResetPasswordController@reset')->name('update');
+//    });
+//
+//    Route::post('register', 'RegisterController@register')->middleware('guest');
+//});
+
+Route::get('test', function ()
 {
-    Route::post('login', 'LoginController@login')->middleware('guest');
-
-    Route::post('logout', 'LoginController@logout')->name('logout');
-
-    Route::group(['middleware' => 'guest', 'prefix' => 'password', 'as' => 'password.'], function ()
-    {
-        Route::post('email', 'ForgotPasswordController@sendResetLinkEmail')->name('email');
-
-        Route::post('reset', 'ResetPasswordController@reset')->name('update');
-    });
-
-    Route::post('register', 'RegisterController@register')->middleware('guest');
+    dd(Auth::user());
 });
 
-//Auth::routes(['verify' => true]);
+Auth::routes(['verify' => true]);

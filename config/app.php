@@ -150,7 +150,7 @@ return [
         /*
          * Package Service Providers...
          */
-        Jenssegers\Mongodb\Auth\PasswordResetServiceProvider::class,
+
 
         /*
          * Application Service Providers...

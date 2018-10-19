@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.7.6 on 2018-09-28 10:02:54.
+ * Generated for Laravel 5.7.9 on 2018-10-18 12:07:26.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -806,7 +806,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Define a contextual binding.
          *
-         * @param string $concrete
+         * @param array|string $concrete
          * @return \Illuminate\Contracts\Container\ContextualBindingBuilder 
          * @static 
          */ 
@@ -1668,7 +1668,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the currently authenticated user.
          *
-         * @return \App\User|null 
+         * @return \App\Models\User|null 
          * @static 
          */ 
         public static function user()
@@ -1703,7 +1703,7 @@ namespace Illuminate\Support\Facades {
          * Log the given user ID into the application without sessions or cookies.
          *
          * @param mixed $id
-         * @return \App\User|false 
+         * @return \App\Models\User|false 
          * @static 
          */ 
         public static function onceUsingId($id)
@@ -1767,7 +1767,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param mixed $id
          * @param bool $remember
-         * @return \App\User|false 
+         * @return \App\Models\User|false 
          * @static 
          */ 
         public static function loginUsingId($id, $remember = false)
@@ -1829,7 +1829,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Get the last user we attempted to authenticate.
          *
-         * @return \App\User 
+         * @return \App\Models\User 
          * @static 
          */ 
         public static function getLastAttempted()
@@ -1931,7 +1931,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Return the currently cached user.
          *
-         * @return \App\User|null 
+         * @return \App\Models\User|null 
          * @static 
          */ 
         public static function getUser()
@@ -1977,7 +1977,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Determine if current user is authenticated. If not, throw an exception.
          *
-         * @return \App\User 
+         * @return \App\Models\User 
          * @throws \Illuminate\Auth\AuthenticationException
          * @static 
          */ 
@@ -3709,94 +3709,14 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Begin a fluent query against a database collection.
+         * Get a schema builder instance for the connection.
          *
-         * @param string $collection
-         * @return \Jenssegers\Mongodb\Query\Builder 
-         * @static 
-         */ 
-        public static function collection($collection)
-        {
-            return \Jenssegers\Mongodb\Connection::collection($collection);
-        }
-        
-        /**
-         * Begin a fluent query against a database collection.
-         *
-         * @param string $table
-         * @return \Jenssegers\Mongodb\Query\Builder 
-         * @static 
-         */ 
-        public static function table($table)
-        {
-            return \Jenssegers\Mongodb\Connection::table($table);
-        }
-        
-        /**
-         * Get a MongoDB collection.
-         *
-         * @param string $name
-         * @return \Jenssegers\Mongodb\Collection 
-         * @static 
-         */ 
-        public static function getCollection($name)
-        {
-            return \Jenssegers\Mongodb\Connection::getCollection($name);
-        }
-        
-        /**
-         * 
-         *
-         * @inheritdoc 
+         * @return \Illuminate\Database\Schema\PostgresBuilder 
          * @static 
          */ 
         public static function getSchemaBuilder()
         {
-            return \Jenssegers\Mongodb\Connection::getSchemaBuilder();
-        }
-        
-        /**
-         * Get the MongoDB database object.
-         *
-         * @return \MongoDB\Database 
-         * @static 
-         */ 
-        public static function getMongoDB()
-        {
-            return \Jenssegers\Mongodb\Connection::getMongoDB();
-        }
-        
-        /**
-         * return MongoDB object.
-         *
-         * @return \MongoDB\Client 
-         * @static 
-         */ 
-        public static function getMongoClient()
-        {
-            return \Jenssegers\Mongodb\Connection::getMongoClient();
-        }
-        
-        /**
-         * 
-         *
-         * @inheritdoc 
-         * @static 
-         */ 
-        public static function getElapsedTime($start)
-        {
-            return \Jenssegers\Mongodb\Connection::getElapsedTime($start);
-        }
-        
-        /**
-         * 
-         *
-         * @inheritdoc 
-         * @static 
-         */ 
-        public static function getDriverName()
-        {
-            return \Jenssegers\Mongodb\Connection::getDriverName();
+            return \Illuminate\Database\PostgresConnection::getSchemaBuilder();
         }
         
         /**
@@ -3808,7 +3728,7 @@ namespace Illuminate\Support\Facades {
         public static function useDefaultQueryGrammar()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::useDefaultQueryGrammar();
+            \Illuminate\Database\PostgresConnection::useDefaultQueryGrammar();
         }
         
         /**
@@ -3820,7 +3740,7 @@ namespace Illuminate\Support\Facades {
         public static function useDefaultSchemaGrammar()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::useDefaultSchemaGrammar();
+            \Illuminate\Database\PostgresConnection::useDefaultSchemaGrammar();
         }
         
         /**
@@ -3832,7 +3752,20 @@ namespace Illuminate\Support\Facades {
         public static function useDefaultPostProcessor()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::useDefaultPostProcessor();
+            \Illuminate\Database\PostgresConnection::useDefaultPostProcessor();
+        }
+        
+        /**
+         * Begin a fluent query against a database table.
+         *
+         * @param string $table
+         * @return \Illuminate\Database\Query\Builder 
+         * @static 
+         */ 
+        public static function table($table)
+        {
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Illuminate\Database\PostgresConnection::table($table);
         }
         
         /**
@@ -3844,7 +3777,7 @@ namespace Illuminate\Support\Facades {
         public static function query()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::query();
+            return \Illuminate\Database\PostgresConnection::query();
         }
         
         /**
@@ -3859,7 +3792,7 @@ namespace Illuminate\Support\Facades {
         public static function selectOne($query, $bindings = array(), $useReadPdo = true)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::selectOne($query, $bindings, $useReadPdo);
+            return \Illuminate\Database\PostgresConnection::selectOne($query, $bindings, $useReadPdo);
         }
         
         /**
@@ -3873,7 +3806,7 @@ namespace Illuminate\Support\Facades {
         public static function selectFromWriteConnection($query, $bindings = array())
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::selectFromWriteConnection($query, $bindings);
+            return \Illuminate\Database\PostgresConnection::selectFromWriteConnection($query, $bindings);
         }
         
         /**
@@ -3888,7 +3821,7 @@ namespace Illuminate\Support\Facades {
         public static function select($query, $bindings = array(), $useReadPdo = true)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::select($query, $bindings, $useReadPdo);
+            return \Illuminate\Database\PostgresConnection::select($query, $bindings, $useReadPdo);
         }
         
         /**
@@ -3903,7 +3836,7 @@ namespace Illuminate\Support\Facades {
         public static function cursor($query, $bindings = array(), $useReadPdo = true)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::cursor($query, $bindings, $useReadPdo);
+            return \Illuminate\Database\PostgresConnection::cursor($query, $bindings, $useReadPdo);
         }
         
         /**
@@ -3917,7 +3850,7 @@ namespace Illuminate\Support\Facades {
         public static function insert($query, $bindings = array())
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::insert($query, $bindings);
+            return \Illuminate\Database\PostgresConnection::insert($query, $bindings);
         }
         
         /**
@@ -3931,7 +3864,7 @@ namespace Illuminate\Support\Facades {
         public static function update($query, $bindings = array())
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::update($query, $bindings);
+            return \Illuminate\Database\PostgresConnection::update($query, $bindings);
         }
         
         /**
@@ -3945,7 +3878,7 @@ namespace Illuminate\Support\Facades {
         public static function delete($query, $bindings = array())
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::delete($query, $bindings);
+            return \Illuminate\Database\PostgresConnection::delete($query, $bindings);
         }
         
         /**
@@ -3959,7 +3892,7 @@ namespace Illuminate\Support\Facades {
         public static function statement($query, $bindings = array())
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::statement($query, $bindings);
+            return \Illuminate\Database\PostgresConnection::statement($query, $bindings);
         }
         
         /**
@@ -3973,7 +3906,7 @@ namespace Illuminate\Support\Facades {
         public static function affectingStatement($query, $bindings = array())
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::affectingStatement($query, $bindings);
+            return \Illuminate\Database\PostgresConnection::affectingStatement($query, $bindings);
         }
         
         /**
@@ -3986,7 +3919,7 @@ namespace Illuminate\Support\Facades {
         public static function unprepared($query)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::unprepared($query);
+            return \Illuminate\Database\PostgresConnection::unprepared($query);
         }
         
         /**
@@ -3999,7 +3932,7 @@ namespace Illuminate\Support\Facades {
         public static function pretend($callback)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::pretend($callback);
+            return \Illuminate\Database\PostgresConnection::pretend($callback);
         }
         
         /**
@@ -4013,7 +3946,7 @@ namespace Illuminate\Support\Facades {
         public static function bindValues($statement, $bindings)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::bindValues($statement, $bindings);
+            \Illuminate\Database\PostgresConnection::bindValues($statement, $bindings);
         }
         
         /**
@@ -4026,7 +3959,7 @@ namespace Illuminate\Support\Facades {
         public static function prepareBindings($bindings)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::prepareBindings($bindings);
+            return \Illuminate\Database\PostgresConnection::prepareBindings($bindings);
         }
         
         /**
@@ -4041,7 +3974,7 @@ namespace Illuminate\Support\Facades {
         public static function logQuery($query, $bindings, $time = null)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::logQuery($query, $bindings, $time);
+            \Illuminate\Database\PostgresConnection::logQuery($query, $bindings, $time);
         }
         
         /**
@@ -4054,7 +3987,7 @@ namespace Illuminate\Support\Facades {
         public static function listen($callback)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::listen($callback);
+            \Illuminate\Database\PostgresConnection::listen($callback);
         }
         
         /**
@@ -4067,7 +4000,7 @@ namespace Illuminate\Support\Facades {
         public static function raw($value)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::raw($value);
+            return \Illuminate\Database\PostgresConnection::raw($value);
         }
         
         /**
@@ -4080,7 +4013,7 @@ namespace Illuminate\Support\Facades {
         public static function recordsHaveBeenModified($value = true)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::recordsHaveBeenModified($value);
+            \Illuminate\Database\PostgresConnection::recordsHaveBeenModified($value);
         }
         
         /**
@@ -4092,7 +4025,7 @@ namespace Illuminate\Support\Facades {
         public static function isDoctrineAvailable()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::isDoctrineAvailable();
+            return \Illuminate\Database\PostgresConnection::isDoctrineAvailable();
         }
         
         /**
@@ -4106,7 +4039,7 @@ namespace Illuminate\Support\Facades {
         public static function getDoctrineColumn($table, $column)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getDoctrineColumn($table, $column);
+            return \Illuminate\Database\PostgresConnection::getDoctrineColumn($table, $column);
         }
         
         /**
@@ -4118,7 +4051,7 @@ namespace Illuminate\Support\Facades {
         public static function getDoctrineSchemaManager()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getDoctrineSchemaManager();
+            return \Illuminate\Database\PostgresConnection::getDoctrineSchemaManager();
         }
         
         /**
@@ -4130,7 +4063,7 @@ namespace Illuminate\Support\Facades {
         public static function getDoctrineConnection()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getDoctrineConnection();
+            return \Illuminate\Database\PostgresConnection::getDoctrineConnection();
         }
         
         /**
@@ -4142,7 +4075,7 @@ namespace Illuminate\Support\Facades {
         public static function getPdo()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getPdo();
+            return \Illuminate\Database\PostgresConnection::getPdo();
         }
         
         /**
@@ -4154,7 +4087,7 @@ namespace Illuminate\Support\Facades {
         public static function getReadPdo()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getReadPdo();
+            return \Illuminate\Database\PostgresConnection::getReadPdo();
         }
         
         /**
@@ -4167,7 +4100,7 @@ namespace Illuminate\Support\Facades {
         public static function setPdo($pdo)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::setPdo($pdo);
+            return \Illuminate\Database\PostgresConnection::setPdo($pdo);
         }
         
         /**
@@ -4180,7 +4113,7 @@ namespace Illuminate\Support\Facades {
         public static function setReadPdo($pdo)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::setReadPdo($pdo);
+            return \Illuminate\Database\PostgresConnection::setReadPdo($pdo);
         }
         
         /**
@@ -4193,7 +4126,7 @@ namespace Illuminate\Support\Facades {
         public static function setReconnector($reconnector)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::setReconnector($reconnector);
+            return \Illuminate\Database\PostgresConnection::setReconnector($reconnector);
         }
         
         /**
@@ -4205,7 +4138,7 @@ namespace Illuminate\Support\Facades {
         public static function getName()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getName();
+            return \Illuminate\Database\PostgresConnection::getName();
         }
         
         /**
@@ -4218,7 +4151,19 @@ namespace Illuminate\Support\Facades {
         public static function getConfig($option = null)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getConfig($option);
+            return \Illuminate\Database\PostgresConnection::getConfig($option);
+        }
+        
+        /**
+         * Get the PDO driver name.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getDriverName()
+        {
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Illuminate\Database\PostgresConnection::getDriverName();
         }
         
         /**
@@ -4230,7 +4175,7 @@ namespace Illuminate\Support\Facades {
         public static function getQueryGrammar()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getQueryGrammar();
+            return \Illuminate\Database\PostgresConnection::getQueryGrammar();
         }
         
         /**
@@ -4243,7 +4188,7 @@ namespace Illuminate\Support\Facades {
         public static function setQueryGrammar($grammar)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::setQueryGrammar($grammar);
+            return \Illuminate\Database\PostgresConnection::setQueryGrammar($grammar);
         }
         
         /**
@@ -4255,7 +4200,7 @@ namespace Illuminate\Support\Facades {
         public static function getSchemaGrammar()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getSchemaGrammar();
+            return \Illuminate\Database\PostgresConnection::getSchemaGrammar();
         }
         
         /**
@@ -4268,7 +4213,7 @@ namespace Illuminate\Support\Facades {
         public static function setSchemaGrammar($grammar)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::setSchemaGrammar($grammar);
+            return \Illuminate\Database\PostgresConnection::setSchemaGrammar($grammar);
         }
         
         /**
@@ -4280,7 +4225,7 @@ namespace Illuminate\Support\Facades {
         public static function getPostProcessor()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getPostProcessor();
+            return \Illuminate\Database\PostgresConnection::getPostProcessor();
         }
         
         /**
@@ -4293,7 +4238,7 @@ namespace Illuminate\Support\Facades {
         public static function setPostProcessor($processor)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::setPostProcessor($processor);
+            return \Illuminate\Database\PostgresConnection::setPostProcessor($processor);
         }
         
         /**
@@ -4305,7 +4250,7 @@ namespace Illuminate\Support\Facades {
         public static function getEventDispatcher()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getEventDispatcher();
+            return \Illuminate\Database\PostgresConnection::getEventDispatcher();
         }
         
         /**
@@ -4318,7 +4263,7 @@ namespace Illuminate\Support\Facades {
         public static function setEventDispatcher($events)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::setEventDispatcher($events);
+            return \Illuminate\Database\PostgresConnection::setEventDispatcher($events);
         }
         
         /**
@@ -4330,7 +4275,7 @@ namespace Illuminate\Support\Facades {
         public static function unsetEventDispatcher()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::unsetEventDispatcher();
+            \Illuminate\Database\PostgresConnection::unsetEventDispatcher();
         }
         
         /**
@@ -4342,7 +4287,7 @@ namespace Illuminate\Support\Facades {
         public static function pretending()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::pretending();
+            return \Illuminate\Database\PostgresConnection::pretending();
         }
         
         /**
@@ -4354,7 +4299,7 @@ namespace Illuminate\Support\Facades {
         public static function getQueryLog()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getQueryLog();
+            return \Illuminate\Database\PostgresConnection::getQueryLog();
         }
         
         /**
@@ -4366,7 +4311,7 @@ namespace Illuminate\Support\Facades {
         public static function flushQueryLog()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::flushQueryLog();
+            \Illuminate\Database\PostgresConnection::flushQueryLog();
         }
         
         /**
@@ -4378,7 +4323,7 @@ namespace Illuminate\Support\Facades {
         public static function enableQueryLog()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::enableQueryLog();
+            \Illuminate\Database\PostgresConnection::enableQueryLog();
         }
         
         /**
@@ -4390,7 +4335,7 @@ namespace Illuminate\Support\Facades {
         public static function disableQueryLog()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::disableQueryLog();
+            \Illuminate\Database\PostgresConnection::disableQueryLog();
         }
         
         /**
@@ -4402,7 +4347,7 @@ namespace Illuminate\Support\Facades {
         public static function logging()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::logging();
+            return \Illuminate\Database\PostgresConnection::logging();
         }
         
         /**
@@ -4414,7 +4359,7 @@ namespace Illuminate\Support\Facades {
         public static function getDatabaseName()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getDatabaseName();
+            return \Illuminate\Database\PostgresConnection::getDatabaseName();
         }
         
         /**
@@ -4427,7 +4372,7 @@ namespace Illuminate\Support\Facades {
         public static function setDatabaseName($database)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::setDatabaseName($database);
+            return \Illuminate\Database\PostgresConnection::setDatabaseName($database);
         }
         
         /**
@@ -4439,7 +4384,7 @@ namespace Illuminate\Support\Facades {
         public static function getTablePrefix()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getTablePrefix();
+            return \Illuminate\Database\PostgresConnection::getTablePrefix();
         }
         
         /**
@@ -4452,7 +4397,7 @@ namespace Illuminate\Support\Facades {
         public static function setTablePrefix($prefix)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::setTablePrefix($prefix);
+            return \Illuminate\Database\PostgresConnection::setTablePrefix($prefix);
         }
         
         /**
@@ -4465,7 +4410,7 @@ namespace Illuminate\Support\Facades {
         public static function withTablePrefix($grammar)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::withTablePrefix($grammar);
+            return \Illuminate\Database\PostgresConnection::withTablePrefix($grammar);
         }
         
         /**
@@ -4479,7 +4424,7 @@ namespace Illuminate\Support\Facades {
         public static function resolverFor($driver, $callback)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::resolverFor($driver, $callback);
+            \Illuminate\Database\PostgresConnection::resolverFor($driver, $callback);
         }
         
         /**
@@ -4492,7 +4437,7 @@ namespace Illuminate\Support\Facades {
         public static function getResolver($driver)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getResolver($driver);
+            return \Illuminate\Database\PostgresConnection::getResolver($driver);
         }
         
         /**
@@ -4507,7 +4452,7 @@ namespace Illuminate\Support\Facades {
         public static function transaction($callback, $attempts = 1)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::transaction($callback, $attempts);
+            return \Illuminate\Database\PostgresConnection::transaction($callback, $attempts);
         }
         
         /**
@@ -4520,7 +4465,7 @@ namespace Illuminate\Support\Facades {
         public static function beginTransaction()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::beginTransaction();
+            \Illuminate\Database\PostgresConnection::beginTransaction();
         }
         
         /**
@@ -4532,7 +4477,7 @@ namespace Illuminate\Support\Facades {
         public static function commit()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::commit();
+            \Illuminate\Database\PostgresConnection::commit();
         }
         
         /**
@@ -4546,7 +4491,7 @@ namespace Illuminate\Support\Facades {
         public static function rollBack($toLevel = null)
         {
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::rollBack($toLevel);
+            \Illuminate\Database\PostgresConnection::rollBack($toLevel);
         }
         
         /**
@@ -4558,7 +4503,7 @@ namespace Illuminate\Support\Facades {
         public static function transactionLevel()
         {
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::transactionLevel();
+            return \Illuminate\Database\PostgresConnection::transactionLevel();
         }
          
     }
@@ -6299,7 +6244,18 @@ namespace Illuminate\Support\Facades {
      * @method static array failures()
      * @method static mixed queue(string|array|\Illuminate\Contracts\Mail\Mailable $view, string $queue = null)
      * @method static mixed later(\DateTimeInterface|\DateInterval|int $delay, string|array|\Illuminate\Contracts\Mail\Mailable $view, string $queue = null)
+     * @method static void assertSent(string $mailable, \Closure|string $callback = null)
+     * @method static void assertNotSent(string $mailable, \Closure|string $callback = null)
+     * @method static void assertNothingSent()
+     * @method static void assertQueued(string $mailable, \Closure|string $callback = null)
+     * @method static void assertNotQueued(string $mailable, \Closure|string $callback = null)
+     * @method static void assertNothingQueued()
+     * @method static \Illuminate\Support\Collection sent(string $mailable, \Closure|string $callback = null)
+     * @method static bool hasSent(string $mailable)
+     * @method static \Illuminate\Support\Collection queued(string $mailable, \Closure|string $callback = null)
+     * @method static bool hasQueued(string $mailable)
      * @see \Illuminate\Mail\Mailer
+     * @see \Illuminate\Support\Testing\Fakes\MailFake
      */ 
     class Mail {
         
@@ -6451,6 +6407,7 @@ namespace Illuminate\Support\Facades {
          * @param string|array|\Illuminate\Contracts\Mail\Mailable $view
          * @param string|null $queue
          * @return mixed 
+         * @throws \InvalidArgumentException
          * @static 
          */ 
         public static function queue($view, $queue = null)
@@ -6493,6 +6450,7 @@ namespace Illuminate\Support\Facades {
          * @param string|array|\Illuminate\Contracts\Mail\Mailable $view
          * @param string|null $queue
          * @return mixed 
+         * @throws \InvalidArgumentException
          * @static 
          */ 
         public static function later($delay, $view, $queue = null)
@@ -6986,8 +6944,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function broker($name = null)
         {
-            //Method inherited from \Illuminate\Auth\Passwords\PasswordBrokerManager            
-            return \Jenssegers\Mongodb\Auth\PasswordBrokerManager::broker($name);
+            return \Illuminate\Auth\Passwords\PasswordBrokerManager::broker($name);
         }
         
         /**
@@ -6998,8 +6955,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getDefaultDriver()
         {
-            //Method inherited from \Illuminate\Auth\Passwords\PasswordBrokerManager            
-            return \Jenssegers\Mongodb\Auth\PasswordBrokerManager::getDefaultDriver();
+            return \Illuminate\Auth\Passwords\PasswordBrokerManager::getDefaultDriver();
         }
         
         /**
@@ -7011,8 +6967,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function setDefaultDriver($name)
         {
-            //Method inherited from \Illuminate\Auth\Passwords\PasswordBrokerManager            
-            \Jenssegers\Mongodb\Auth\PasswordBrokerManager::setDefaultDriver($name);
+            \Illuminate\Auth\Passwords\PasswordBrokerManager::setDefaultDriver($name);
         }
          
     }
@@ -7437,6 +7392,19 @@ namespace Illuminate\Support\Facades {
         {
             //Method inherited from \Illuminate\Queue\Queue            
             return \Illuminate\Queue\SyncQueue::getJobExpiration($job);
+        }
+        
+        /**
+         * Register a callback to be executed when creating job payloads.
+         *
+         * @param callable $callback
+         * @return void 
+         * @static 
+         */ 
+        public static function createPayloadUsing($callback)
+        {
+            //Method inherited from \Illuminate\Queue\Queue            
+            \Illuminate\Queue\SyncQueue::createPayloadUsing($callback);
         }
         
         /**
@@ -8905,7 +8873,7 @@ namespace Illuminate\Support\Facades {
          *  * _format request attribute
          *  * $default
          *
-         * @param string $default The default format
+         * @param string|null $default The default format
          * @return string The request format
          * @static 
          */ 
@@ -9366,7 +9334,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $key
          * @param string|array|null $default
-         * @return string|array 
+         * @return string|array|null 
          * @static 
          */ 
         public static function server($key = null, $default = null)
@@ -9391,7 +9359,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $key
          * @param string|array|null $default
-         * @return string|array 
+         * @return string|array|null 
          * @static 
          */ 
         public static function header($key = null, $default = null)
@@ -9535,7 +9503,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $key
          * @param string|array|null $default
-         * @return string|array 
+         * @return string|array|null 
          * @static 
          */ 
         public static function query($key = null, $default = null)
@@ -9548,7 +9516,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $key
          * @param string|array|null $default
-         * @return string|array 
+         * @return string|array|null 
          * @static 
          */ 
         public static function post($key = null, $default = null)
@@ -9573,7 +9541,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $key
          * @param string|array|null $default
-         * @return string|array 
+         * @return string|array|null 
          * @static 
          */ 
         public static function cookie($key = null, $default = null)
@@ -9965,7 +9933,8 @@ namespace Illuminate\Support\Facades {
      * @method static \Illuminate\Routing\RouteRegistrar name(string $value)
      * @method static \Illuminate\Routing\RouteRegistrar namespace(string $value)
      * @method static \Illuminate\Routing\Router|\Illuminate\Routing\RouteRegistrar group(array|\Closure|string $attributes, \Closure|string $routes)
-     * @method static \Illuminate\Routing\Route redirect(string $uri, string $destination, int $status = 301)
+     * @method static \Illuminate\Routing\Route redirect(string $uri, string $destination, int $status = 302)
+     * @method static \Illuminate\Routing\Route permanentRedirect(string $uri, string $destination)
      * @method static \Illuminate\Routing\Route view(string $uri, string $view, array $data = [])
      * @method static void bind(string $key, string|callable $binder)
      * @method static \Illuminate\Routing\Route current()
@@ -10812,116 +10781,49 @@ namespace Illuminate\Support\Facades {
     class Schema {
         
         /**
-         * 
+         * Determine if the given table exists.
          *
-         * @inheritdoc 
-         * @static 
-         */ 
-        public static function hasColumn($table, $column)
-        {
-            return \Jenssegers\Mongodb\Schema\Builder::hasColumn($table, $column);
-        }
-        
-        /**
-         * 
-         *
-         * @inheritdoc 
-         * @static 
-         */ 
-        public static function hasColumns($table, $columns)
-        {
-            return \Jenssegers\Mongodb\Schema\Builder::hasColumns($table, $columns);
-        }
-        
-        /**
-         * Determine if the given collection exists.
-         *
-         * @param string $collection
+         * @param string $table
          * @return bool 
          * @static 
          */ 
-        public static function hasCollection($collection)
+        public static function hasTable($table)
         {
-            return \Jenssegers\Mongodb\Schema\Builder::hasCollection($collection);
+            return \Illuminate\Database\Schema\PostgresBuilder::hasTable($table);
         }
         
         /**
-         * 
+         * Drop all tables from the database.
          *
-         * @inheritdoc 
-         * @static 
-         */ 
-        public static function hasTable($collection)
-        {
-            return \Jenssegers\Mongodb\Schema\Builder::hasTable($collection);
-        }
-        
-        /**
-         * Modify a collection on the schema.
-         *
-         * @param string $collection
-         * @param \Closure $callback
-         * @return bool 
-         * @static 
-         */ 
-        public static function collection($collection, $callback)
-        {
-            return \Jenssegers\Mongodb\Schema\Builder::collection($collection, $callback);
-        }
-        
-        /**
-         * 
-         *
-         * @inheritdoc 
-         * @static 
-         */ 
-        public static function table($collection, $callback)
-        {
-            return \Jenssegers\Mongodb\Schema\Builder::table($collection, $callback);
-        }
-        
-        /**
-         * 
-         *
-         * @inheritdoc 
-         * @static 
-         */ 
-        public static function create($collection, $callback = null)
-        {
-            return \Jenssegers\Mongodb\Schema\Builder::create($collection, $callback);
-        }
-        
-        /**
-         * 
-         *
-         * @inheritdoc 
-         * @static 
-         */ 
-        public static function dropIfExists($collection)
-        {
-            return \Jenssegers\Mongodb\Schema\Builder::dropIfExists($collection);
-        }
-        
-        /**
-         * 
-         *
-         * @inheritdoc 
-         * @static 
-         */ 
-        public static function drop($collection)
-        {
-            return \Jenssegers\Mongodb\Schema\Builder::drop($collection);
-        }
-        
-        /**
-         * 
-         *
-         * @inheritdoc 
+         * @return void 
          * @static 
          */ 
         public static function dropAllTables()
         {
-            return \Jenssegers\Mongodb\Schema\Builder::dropAllTables();
+            \Illuminate\Database\Schema\PostgresBuilder::dropAllTables();
+        }
+        
+        /**
+         * Drop all views from the database.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function dropAllViews()
+        {
+            \Illuminate\Database\Schema\PostgresBuilder::dropAllViews();
+        }
+        
+        /**
+         * Get the column listing for a given table.
+         *
+         * @param string $table
+         * @return array 
+         * @static 
+         */ 
+        public static function getColumnListing($table)
+        {
+            return \Illuminate\Database\Schema\PostgresBuilder::getColumnListing($table);
         }
         
         /**
@@ -10934,7 +10836,35 @@ namespace Illuminate\Support\Facades {
         public static function defaultStringLength($length)
         {
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            \Jenssegers\Mongodb\Schema\Builder::defaultStringLength($length);
+            \Illuminate\Database\Schema\PostgresBuilder::defaultStringLength($length);
+        }
+        
+        /**
+         * Determine if the given table has a given column.
+         *
+         * @param string $table
+         * @param string $column
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasColumn($table, $column)
+        {
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            return \Illuminate\Database\Schema\PostgresBuilder::hasColumn($table, $column);
+        }
+        
+        /**
+         * Determine if the given table has given columns.
+         *
+         * @param string $table
+         * @param array $columns
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasColumns($table, $columns)
+        {
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            return \Illuminate\Database\Schema\PostgresBuilder::hasColumns($table, $columns);
         }
         
         /**
@@ -10948,33 +10878,61 @@ namespace Illuminate\Support\Facades {
         public static function getColumnType($table, $column)
         {
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Jenssegers\Mongodb\Schema\Builder::getColumnType($table, $column);
+            return \Illuminate\Database\Schema\PostgresBuilder::getColumnType($table, $column);
         }
         
         /**
-         * Get the column listing for a given table.
+         * Modify a table on the schema.
          *
          * @param string $table
-         * @return array 
+         * @param \Closure $callback
+         * @return void 
          * @static 
          */ 
-        public static function getColumnListing($table)
+        public static function table($table, $callback)
         {
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Jenssegers\Mongodb\Schema\Builder::getColumnListing($table);
+            \Illuminate\Database\Schema\PostgresBuilder::table($table, $callback);
         }
         
         /**
-         * Drop all views from the database.
+         * Create a new table on the schema.
          *
+         * @param string $table
+         * @param \Closure $callback
          * @return void 
-         * @throws \LogicException
          * @static 
          */ 
-        public static function dropAllViews()
+        public static function create($table, $callback)
         {
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            \Jenssegers\Mongodb\Schema\Builder::dropAllViews();
+            \Illuminate\Database\Schema\PostgresBuilder::create($table, $callback);
+        }
+        
+        /**
+         * Drop a table from the schema.
+         *
+         * @param string $table
+         * @return void 
+         * @static 
+         */ 
+        public static function drop($table)
+        {
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            \Illuminate\Database\Schema\PostgresBuilder::drop($table);
+        }
+        
+        /**
+         * Drop a table from the schema if it exists.
+         *
+         * @param string $table
+         * @return void 
+         * @static 
+         */ 
+        public static function dropIfExists($table)
+        {
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            \Illuminate\Database\Schema\PostgresBuilder::dropIfExists($table);
         }
         
         /**
@@ -10988,7 +10946,7 @@ namespace Illuminate\Support\Facades {
         public static function rename($from, $to)
         {
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            \Jenssegers\Mongodb\Schema\Builder::rename($from, $to);
+            \Illuminate\Database\Schema\PostgresBuilder::rename($from, $to);
         }
         
         /**
@@ -11000,7 +10958,7 @@ namespace Illuminate\Support\Facades {
         public static function enableForeignKeyConstraints()
         {
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Jenssegers\Mongodb\Schema\Builder::enableForeignKeyConstraints();
+            return \Illuminate\Database\Schema\PostgresBuilder::enableForeignKeyConstraints();
         }
         
         /**
@@ -11012,7 +10970,7 @@ namespace Illuminate\Support\Facades {
         public static function disableForeignKeyConstraints()
         {
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Jenssegers\Mongodb\Schema\Builder::disableForeignKeyConstraints();
+            return \Illuminate\Database\Schema\PostgresBuilder::disableForeignKeyConstraints();
         }
         
         /**
@@ -11024,7 +10982,7 @@ namespace Illuminate\Support\Facades {
         public static function getConnection()
         {
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Jenssegers\Mongodb\Schema\Builder::getConnection();
+            return \Illuminate\Database\Schema\PostgresBuilder::getConnection();
         }
         
         /**
@@ -11037,7 +10995,7 @@ namespace Illuminate\Support\Facades {
         public static function setConnection($connection)
         {
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Jenssegers\Mongodb\Schema\Builder::setConnection($connection);
+            return \Illuminate\Database\Schema\PostgresBuilder::setConnection($connection);
         }
         
         /**
@@ -11050,7 +11008,7 @@ namespace Illuminate\Support\Facades {
         public static function blueprintResolver($resolver)
         {
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            \Jenssegers\Mongodb\Schema\Builder::blueprintResolver($resolver);
+            \Illuminate\Database\Schema\PostgresBuilder::blueprintResolver($resolver);
         }
          
     }
@@ -13621,6 +13579,862 @@ namespace Illuminate\Support\Facades {
  
 }
 
+namespace Clockwork\Support\Laravel { 
+
+    /**
+     * 
+     *
+     */ 
+    class Facade {
+        
+        /**
+         * Add a new data source
+         *
+         * @static 
+         */ 
+        public static function addDataSource($dataSource)
+        {
+            return \Clockwork\Clockwork::addDataSource($dataSource);
+        }
+        
+        /**
+         * Return array of all added data sources
+         *
+         * @static 
+         */ 
+        public static function getDataSources()
+        {
+            return \Clockwork\Clockwork::getDataSources();
+        }
+        
+        /**
+         * Return the request object
+         *
+         * @static 
+         */ 
+        public static function getRequest()
+        {
+            return \Clockwork\Clockwork::getRequest();
+        }
+        
+        /**
+         * Set a custom request object
+         *
+         * @static 
+         */ 
+        public static function setRequest($request)
+        {
+            return \Clockwork\Clockwork::setRequest($request);
+        }
+        
+        /**
+         * Add data from all data sources to request
+         *
+         * @static 
+         */ 
+        public static function resolveRequest()
+        {
+            return \Clockwork\Clockwork::resolveRequest();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function extendRequest($request = null)
+        {
+            return \Clockwork\Clockwork::extendRequest($request);
+        }
+        
+        /**
+         * Store request via storage object
+         *
+         * @static 
+         */ 
+        public static function storeRequest()
+        {
+            return \Clockwork\Clockwork::storeRequest();
+        }
+        
+        /**
+         * Return the storage object
+         *
+         * @static 
+         */ 
+        public static function getStorage()
+        {
+            return \Clockwork\Clockwork::getStorage();
+        }
+        
+        /**
+         * Set a custom storage object
+         *
+         * @static 
+         */ 
+        public static function setStorage($storage)
+        {
+            return \Clockwork\Clockwork::setStorage($storage);
+        }
+        
+        /**
+         * Return the authenticator object
+         *
+         * @static 
+         */ 
+        public static function getAuthenticator()
+        {
+            return \Clockwork\Clockwork::getAuthenticator();
+        }
+        
+        /**
+         * Set a custom authenticator object
+         *
+         * @static 
+         */ 
+        public static function setAuthenticator($authenticator)
+        {
+            return \Clockwork\Clockwork::setAuthenticator($authenticator);
+        }
+        
+        /**
+         * Return the log instance
+         *
+         * @static 
+         */ 
+        public static function getLog()
+        {
+            return \Clockwork\Clockwork::getLog();
+        }
+        
+        /**
+         * Set a custom log instance
+         *
+         * @static 
+         */ 
+        public static function setLog($log)
+        {
+            return \Clockwork\Clockwork::setLog($log);
+        }
+        
+        /**
+         * Return the timeline instance
+         *
+         * @static 
+         */ 
+        public static function getTimeline()
+        {
+            return \Clockwork\Clockwork::getTimeline();
+        }
+        
+        /**
+         * Set a custom timeline instance
+         *
+         * @static 
+         */ 
+        public static function setTimeline($timeline)
+        {
+            return \Clockwork\Clockwork::setTimeline($timeline);
+        }
+        
+        /**
+         * Shortcut methods for the current log instance
+         *
+         * @static 
+         */ 
+        public static function log($level, $message, $context = array())
+        {
+            return \Clockwork\Clockwork::log($level, $message, $context);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function emergency($message, $context = array())
+        {
+            return \Clockwork\Clockwork::emergency($message, $context);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function alert($message, $context = array())
+        {
+            return \Clockwork\Clockwork::alert($message, $context);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function critical($message, $context = array())
+        {
+            return \Clockwork\Clockwork::critical($message, $context);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function error($message, $context = array())
+        {
+            return \Clockwork\Clockwork::error($message, $context);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function warning($message, $context = array())
+        {
+            return \Clockwork\Clockwork::warning($message, $context);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function notice($message, $context = array())
+        {
+            return \Clockwork\Clockwork::notice($message, $context);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function info($message, $context = array())
+        {
+            return \Clockwork\Clockwork::info($message, $context);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function debug($message, $context = array())
+        {
+            return \Clockwork\Clockwork::debug($message, $context);
+        }
+        
+        /**
+         * Shortcut methods for the current timeline instance
+         *
+         * @static 
+         */ 
+        public static function startEvent($name, $description, $time = null)
+        {
+            return \Clockwork\Clockwork::startEvent($name, $description, $time);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function endEvent($name)
+        {
+            return \Clockwork\Clockwork::endEvent($name);
+        }
+        
+        /**
+         * Shortcut methods for recording subrequests
+         *
+         * @static 
+         */ 
+        public static function subrequest($url, $id, $path = null)
+        {
+            return \Clockwork\Clockwork::subrequest($url, $id, $path);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function userData($key = null)
+        {
+            return \Clockwork\Clockwork::userData($key);
+        }
+         
+    }
+ 
+}
+
+namespace Nwidart\Modules\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Module {
+        
+        /**
+         * Add other module location.
+         *
+         * @param string $path
+         * @return $this 
+         * @static 
+         */ 
+        public static function addLocation($path)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::addLocation($path);
+        }
+        
+        /**
+         * Get all additional paths.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getPaths()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getPaths();
+        }
+        
+        /**
+         * Get scanned modules paths.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getScanPaths()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getScanPaths();
+        }
+        
+        /**
+         * Get & scan all modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function scan()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::scan();
+        }
+        
+        /**
+         * Get all modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function all()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::all();
+        }
+        
+        /**
+         * Get cached modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getCached()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getCached();
+        }
+        
+        /**
+         * Get all modules as collection instance.
+         *
+         * @return \Nwidart\Modules\Collection 
+         * @static 
+         */ 
+        public static function toCollection()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::toCollection();
+        }
+        
+        /**
+         * Get modules by status.
+         *
+         * @param $status
+         * @return array 
+         * @static 
+         */ 
+        public static function getByStatus($status)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getByStatus($status);
+        }
+        
+        /**
+         * Determine whether the given module exist.
+         *
+         * @param $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function has($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::has($name);
+        }
+        
+        /**
+         * Get list of enabled modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function allEnabled()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::allEnabled();
+        }
+        
+        /**
+         * Get list of disabled modules.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function allDisabled()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::allDisabled();
+        }
+        
+        /**
+         * Get count from all modules.
+         *
+         * @return int 
+         * @static 
+         */ 
+        public static function count()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::count();
+        }
+        
+        /**
+         * Get all ordered modules.
+         *
+         * @param string $direction
+         * @return array 
+         * @static 
+         */ 
+        public static function getOrdered($direction = 'asc')
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getOrdered($direction);
+        }
+        
+        /**
+         * Get a module path.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getPath()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getPath();
+        }
+        
+        /**
+         * Register the modules.
+         *
+         * @static 
+         */ 
+        public static function register()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::register();
+        }
+        
+        /**
+         * Boot the modules.
+         *
+         * @static 
+         */ 
+        public static function boot()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::boot();
+        }
+        
+        /**
+         * Find a specific module.
+         *
+         * @param $name
+         * @return mixed|void 
+         * @static 
+         */ 
+        public static function find($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::find($name);
+        }
+        
+        /**
+         * Find a specific module by its alias.
+         *
+         * @param $alias
+         * @return mixed|void 
+         * @static 
+         */ 
+        public static function findByAlias($alias)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::findByAlias($alias);
+        }
+        
+        /**
+         * Find all modules that are required by a module. If the module cannot be found, throw an exception.
+         *
+         * @param $name
+         * @return array 
+         * @throws ModuleNotFoundException
+         * @static 
+         */ 
+        public static function findRequirements($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::findRequirements($name);
+        }
+        
+        /**
+         * Find a specific module, if there return that, otherwise throw exception.
+         *
+         * @param $name
+         * @return \Module 
+         * @throws ModuleNotFoundException
+         * @static 
+         */ 
+        public static function findOrFail($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::findOrFail($name);
+        }
+        
+        /**
+         * Get all modules as laravel collection instance.
+         *
+         * @param $status
+         * @return \Nwidart\Modules\Collection 
+         * @static 
+         */ 
+        public static function collections($status = 1)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::collections($status);
+        }
+        
+        /**
+         * Get module path for a specific module.
+         *
+         * @param $module
+         * @return string 
+         * @static 
+         */ 
+        public static function getModulePath($module)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getModulePath($module);
+        }
+        
+        /**
+         * Get asset path for a specific module.
+         *
+         * @param $module
+         * @return string 
+         * @static 
+         */ 
+        public static function assetPath($module)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::assetPath($module);
+        }
+        
+        /**
+         * Get a specific config data from a configuration file.
+         *
+         * @param $key
+         * @param null $default
+         * @return mixed 
+         * @static 
+         */ 
+        public static function config($key, $default = null)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::config($key, $default);
+        }
+        
+        /**
+         * Get storage path for module used.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getUsedStoragePath()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getUsedStoragePath();
+        }
+        
+        /**
+         * Set module used for cli session.
+         *
+         * @param $name
+         * @throws ModuleNotFoundException
+         * @static 
+         */ 
+        public static function setUsed($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::setUsed($name);
+        }
+        
+        /**
+         * Forget the module used for cli session.
+         *
+         * @static 
+         */ 
+        public static function forgetUsed()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::forgetUsed();
+        }
+        
+        /**
+         * Get module used for cli session.
+         *
+         * @return string 
+         * @throws \Nwidart\Modules\Exceptions\ModuleNotFoundException
+         * @static 
+         */ 
+        public static function getUsedNow()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getUsedNow();
+        }
+        
+        /**
+         * Get laravel filesystem instance.
+         *
+         * @return \Illuminate\Filesystem\Filesystem 
+         * @static 
+         */ 
+        public static function getFiles()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getFiles();
+        }
+        
+        /**
+         * Get module assets path.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getAssetsPath()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getAssetsPath();
+        }
+        
+        /**
+         * Get asset url from a specific module.
+         *
+         * @param string $asset
+         * @return string 
+         * @throws InvalidAssetPath
+         * @static 
+         */ 
+        public static function asset($asset)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::asset($asset);
+        }
+        
+        /**
+         * Determine whether the given module is activated.
+         *
+         * @param string $name
+         * @return bool 
+         * @throws ModuleNotFoundException
+         * @static 
+         */ 
+        public static function enabled($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::enabled($name);
+        }
+        
+        /**
+         * Determine whether the given module is not activated.
+         *
+         * @param string $name
+         * @return bool 
+         * @throws ModuleNotFoundException
+         * @static 
+         */ 
+        public static function disabled($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::disabled($name);
+        }
+        
+        /**
+         * Enabling a specific module.
+         *
+         * @param string $name
+         * @return void 
+         * @throws \Nwidart\Modules\Exceptions\ModuleNotFoundException
+         * @static 
+         */ 
+        public static function enable($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            \Nwidart\Modules\Laravel\LaravelFileRepository::enable($name);
+        }
+        
+        /**
+         * Disabling a specific module.
+         *
+         * @param string $name
+         * @return void 
+         * @throws \Nwidart\Modules\Exceptions\ModuleNotFoundException
+         * @static 
+         */ 
+        public static function disable($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            \Nwidart\Modules\Laravel\LaravelFileRepository::disable($name);
+        }
+        
+        /**
+         * Delete a specific module.
+         *
+         * @param string $name
+         * @return bool 
+         * @throws \Nwidart\Modules\Exceptions\ModuleNotFoundException
+         * @static 
+         */ 
+        public static function delete($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::delete($name);
+        }
+        
+        /**
+         * Update dependencies for the specified module.
+         *
+         * @param string $module
+         * @static 
+         */ 
+        public static function update($module)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::update($module);
+        }
+        
+        /**
+         * Install the specified module.
+         *
+         * @param string $name
+         * @param string $version
+         * @param string $type
+         * @param bool $subtree
+         * @return \Symfony\Component\Process\Process 
+         * @static 
+         */ 
+        public static function install($name, $version = 'dev-master', $type = 'composer', $subtree = false)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::install($name, $version, $type, $subtree);
+        }
+        
+        /**
+         * Get stub path.
+         *
+         * @return string|null 
+         * @static 
+         */ 
+        public static function getStubPath()
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::getStubPath();
+        }
+        
+        /**
+         * Set stub path.
+         *
+         * @param string $stubPath
+         * @return $this 
+         * @static 
+         */ 
+        public static function setStubPath($stubPath)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::setStubPath($stubPath);
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            \Nwidart\Modules\Laravel\LaravelFileRepository::macro($name, $macro);
+        }
+        
+        /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            \Nwidart\Modules\Laravel\LaravelFileRepository::mixin($mixin);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+            //Method inherited from \Nwidart\Modules\FileRepository            
+            return \Nwidart\Modules\Laravel\LaravelFileRepository::hasMacro($name);
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -15993,6 +16807,10 @@ namespace  {
     class Validator extends \Illuminate\Support\Facades\Validator {}
 
     class View extends \Illuminate\Support\Facades\View {}
+
+    class Clockwork extends \Clockwork\Support\Laravel\Facade {}
+
+    class Module extends \Nwidart\Modules\Facades\Module {}
  
 }
 

@@ -3,17 +3,31 @@
 namespace App\Models;
 
 use App\Traits\MustVerifyPhone;
-use Jenssegers\Mongodb\Eloquent\Model;
+use App\Traits\UuidTrait;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Phone extends Model
 {
-    use MustVerifyPhone;
+    use UuidTrait, MustVerifyPhone, SoftDeletes;
+
+    public $incrementing = false;
+
+    protected $keyType = 'uuid';
 
     protected $fillable = ['area_code', 'phone', 'is_whatsapp'];
 
     protected $attributes = ['phone_verified_at' => null, 'is_whatsapp' => false];
 
     protected $casts = ['is_whatsapp' => 'boolean'];
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * @return string

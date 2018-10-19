@@ -3,16 +3,20 @@
 namespace App\Models;
 
 use Carbon\Carbon;
-use Illuminate\Auth\MustVerifyEmail;
-use Illuminate\Contracts\Auth\MustVerifyEmail as VerifiableEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Jenssegers\Mongodb\Auth\User as Authenticatable;
-use Jenssegers\Mongodb\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 use Laravel\Passport\HasApiTokens;
 
-class User extends Authenticatable implements VerifiableEmail
+class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, MustVerifyEmail, SoftDeletes, HasApiTokens;
+    use Notifiable, SoftDeletes, HasApiTokens;
+
+    protected $keyType = 'uuid';
+
+    public $incrementing = false;
 
     /**
      * The attributes that are mass assignable.
@@ -32,32 +36,30 @@ class User extends Authenticatable implements VerifiableEmail
         'password', 'remember_token',
     ];
 
-    protected $attributes = ['phone_verified_at' => null];
-
     protected $dates = ['birthdate'];
 
     /**
-     * @return \Jenssegers\Mongodb\Relations\EmbedsMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function roles()
     {
-        return $this->embedsMany(Role::class);
+        return $this->belongsToMany(Role::class)->withTimestamps();
     }
 
     /**
-     * @return \Jenssegers\Mongodb\Relations\EmbedsOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function address()
     {
-        return $this->embedsOne(Address::class);
+        return $this->hasOne(Address::class);
     }
 
     /**
-     * @return \Jenssegers\Mongodb\Relations\EmbedsOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function phone()
     {
-        return $this->embedsOne(Phone::class);
+        return $this->hasOne(Phone::class);
     }
 
     /**
@@ -75,6 +77,8 @@ class User extends Authenticatable implements VerifiableEmail
     {
         if (filled($value) && is_string($value)) {
             $this->attributes['birthdate'] = Carbon::createFromFormat('d/m/Y', $value);
+        } else {
+            $this->attributes['birthdate'] = $value;
         }
     }
 
@@ -97,5 +101,16 @@ class User extends Authenticatable implements VerifiableEmail
     public function getAuthIdentifierName()
     {
         return 'user_id';
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->id = (string) Str::uuid();
+            $model->user_id = (string) Str::uuid();
+            $model->username = kebab_case($model->name);
+        });
     }
 }
