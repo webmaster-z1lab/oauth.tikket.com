@@ -64,7 +64,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        return response()->redirectTo($request->get('continue'));
+        return response()->redirectTo(base64_decode($request->get('continue')));
     }
 
     /**
