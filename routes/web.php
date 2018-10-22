@@ -27,9 +27,4 @@
 //    Route::post('register', 'RegisterController@register')->middleware('guest');
 //});
 
-Route::get('test', function ()
-{
-    dd(Auth::user());
-});
-
 Auth::routes(['verify' => true]);

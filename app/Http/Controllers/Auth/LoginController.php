@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Laravel\Passport\Passport;
+use Lcobucci\JWT\Parser;
 
 class LoginController extends Controller
 {
@@ -62,7 +64,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-        return response()->json(['success' => true]);
+        return response()->redirectTo($request->get('continue'));
     }
 
     /**
@@ -73,6 +75,14 @@ class LoginController extends Controller
      */
     protected function loggedOut(Request $request)
     {
-        return response()->json(['success' => true]);
+        if ($request->bearerToken() != null) {
+            $token = (new Parser())->parse($request->bearerToken());
+            Passport::token()->find($token->getClaim('jti'))->revoke();
+            \DB::table('oauth_refresh_tokens')
+                ->where('access_token_id', $token->getClaim('jti'))
+                ->update(['revoked' => true]);
+        }
+
+        return response()->redirectTo($request->get('continue'));
     }
 }
