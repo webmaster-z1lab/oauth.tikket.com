@@ -38,14 +38,18 @@ class Handler extends ExceptionHandler
     }
 
     /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Exception  $exception
-     * @return \Illuminate\Http\Response
+     * @param \Illuminate\Http\Request $request
+     * @param Exception                $exception
+     * @return \Illuminate\Http\Response|\Symfony\Component\HttpFoundation\Response
      */
     public function render($request, Exception $exception)
     {
+        if($request->wantsJson()) {
+            $handler = new ApiHandler($this->container);
+
+            return $handler->render($request, $exception);
+        }
+
         return parent::render($request, $exception);
     }
 }
