@@ -12,11 +12,11 @@ return [
     |
     */
    
-    'supportsCredentials' => TRUE,
-    'allowedOrigins' => ['*'],
+    'supportsCredentials' => FALSE,
+    'allowedOrigins' => ['http://127.0.0.1:8000', 'http://localhost', 'http://localhost:8000'],
     'allowedOriginsPatterns' => [],
     'allowedHeaders' => ['*'],
-    'allowedMethods' => ['GET', 'POST', 'HEAD', 'OPTIONS'],
+    'allowedMethods' => ['*'],
     'exposedHeaders' => [],
     'maxAge' => 0,
 

@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Laravel\Passport\Passport;
 use Lcobucci\JWT\Parser;
 
+
 class LoginController extends Controller
 {
     /*

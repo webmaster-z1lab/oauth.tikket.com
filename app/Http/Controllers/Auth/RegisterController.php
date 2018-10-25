@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
@@ -52,23 +50,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|string|max:255',
-            'social_name' => 'nullable|string|max:255',
-            'nickname' => 'nullable|string|max:100',
-            'avatar' => 'nullable|image',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'gender' => 'nullable|string|in:male,female',
-            'birthdate' => 'nullable|date_format:d/m/Y',
-            'phone' => 'nullable|digits_between:10,11',
-            'is_whatsapp' => 'nullabe|boolean',
-            'address' => 'nullable',
-            'address.street' => 'nullable|string|max:255',
-            'address.number' => 'nullable|integer|min:0',
-            'address.complement' => 'nullable|string|max:50',
-            'address.district' => 'nullable|string|max:50',
-            'address.city' => 'nullable|string|max:255',
-            'address.state' => 'nullable|string|max:100',
-            'address.postal_code' => 'nullable|digits:8'
+            'password' => 'required|string|min:6',
         ]);
     }
 
