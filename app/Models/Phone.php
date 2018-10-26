@@ -11,15 +11,24 @@ class Phone extends Model
 {
     use UuidTrait, MustVerifyPhone, SoftDeletes;
 
-    public $incrementing = false;
+    public $incrementing = FALSE;
 
     protected $keyType = 'uuid';
 
-    protected $fillable = ['area_code', 'phone', 'is_whatsapp'];
+    protected $fillable = [
+        'is_whatsapp',
+        'area_code',
+        'phone',
+    ];
 
-    protected $attributes = ['phone_verified_at' => null, 'is_whatsapp' => false];
+    protected $attributes = [
+        'phone_verified_at' => NULL,
+        'is_whatsapp'       => FALSE,
+    ];
 
-    protected $casts = ['is_whatsapp' => 'boolean'];
+    protected $casts = [
+        'is_whatsapp' => 'boolean',
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -44,9 +53,9 @@ class Phone extends Model
     public function setIsWhatsappAttribute($value)
     {
         if ($value === 'false') {
-            $this->attributes['is_whatsapp'] = false;
+            $this->attributes['is_whatsapp'] = FALSE;
         } else {
-            $this->attributes['is_whatsapp'] = (bool) $value;
+            $this->attributes['is_whatsapp'] = (bool)$value;
         }
     }
 }

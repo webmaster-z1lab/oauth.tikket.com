@@ -15,17 +15,26 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 {
     use Notifiable, SoftDeletes, HasApiTokens;
 
-    protected $keyType = 'uuid';
-
-    public $incrementing = false;
-
     /**
-     * The attributes that are mass assignable.
-     *
+     * @var string
+     */
+    protected $keyType = 'uuid';
+    /**
+     * @var bool
+     */
+    public $incrementing = FALSE;
+    /**
      * @var array
      */
     protected $fillable = [
-        'name', 'social_name', 'nickname', 'email', 'password', 'gender', 'birthdate'
+        'name',
+        'social_name',
+        'nickname',
+        'email',
+        'password',
+        'gender',
+        'birthdate',
+        'avatar',
     ];
 
     /**
@@ -34,7 +43,8 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     protected $dates = ['birthdate'];
@@ -88,12 +98,19 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
      */
     public function getFormattedAddressAttribute()
     {
-        if (!$this->address()->exists()) {
-            return null;
-        }
+        if (!$this->address()->exists()) return NULL;
+
         $address = array_only($this->address->toArray(), ['street', 'number', 'complement', 'district', 'city', 'state', 'postal_code']);
 
         return json_encode($address);
+    }
+
+    /**
+     * @return string
+     */
+    public function getAvatarAttribute()
+    {
+        return \Storage::url($this->attributes['avatar']);
     }
 
     /**
@@ -129,8 +146,8 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         parent::boot();
 
         static::creating(function ($model) {
-            $model->id = (string) Str::uuid();
-            $model->user_id = (string) Str::uuid();
+            $model->id = (string)Str::uuid();
+            $model->user_id = (string)Str::uuid();
             $model->username = kebab_case($model->name);
         });
     }

@@ -11,13 +11,13 @@ return [
     | to accept any value.
     |
     */
-   
-    'supportsCredentials' => FALSE,
-    'allowedOrigins' => ['http://127.0.0.1:8000', 'http://localhost', 'http://localhost:8000'],
+
+    'supportsCredentials'    => FALSE,
+    'allowedOrigins'         => ['*'],
     'allowedOriginsPatterns' => [],
-    'allowedHeaders' => ['*'],
-    'allowedMethods' => ['*'],
-    'exposedHeaders' => [],
-    'maxAge' => 0,
+    'allowedHeaders'         => ['*'],
+    'allowedMethods'         => ['*'],
+    'exposedHeaders'         => [],
+    'maxAge'                 => 0,
 
 ];

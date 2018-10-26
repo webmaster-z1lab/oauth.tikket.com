@@ -9,17 +9,33 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Address extends Model
 {
     use SoftDeletes, UuidTrait;
-
-    public $incrementing = false;
-
+    /**
+     * @var bool
+     */
+    public $incrementing = FALSE;
+    /**
+     * @var string
+     */
     protected $keyType = 'uuid';
-
+    /**
+     * @var array
+     */
     protected $fillable = [
-        'street', 'number', 'complement', 'district', 'city', 'state', 'postal_code'
+        'street',
+        'number',
+        'complement',
+        'district',
+        'city',
+        'state',
+        'postal_code',
     ];
-
-    protected $attributes = ['complement' => null];
-
+    /**
+     * @var array
+     */
+    protected $attributes = ['complement' => NULL];
+    /**
+     * @var array
+     */
     protected $casts = ['number' => 'integer'];
 
     /**

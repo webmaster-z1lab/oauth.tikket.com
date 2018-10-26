@@ -23,29 +23,29 @@ return [
     */
 
     'stubs' => [
-        'enabled' => false,
-        'path' => base_path() . '/vendor/nwidart/laravel-modules/src/Commands/stubs',
-        'files' => [
-            'routes/web' => 'Routes/web.php',
-            'routes/api' => 'Routes/api.php',
-            'views/index' => 'Resources/views/index.blade.php',
-            'views/master' => 'Resources/views/layouts/master.blade.php',
+        'enabled'      => FALSE,
+        'path'         => base_path() . '/vendor/nwidart/laravel-modules/src/Commands/stubs',
+        'files'        => [
+            'routes/web'      => 'Routes/web.php',
+            'routes/api'      => 'Routes/api.php',
+            'views/index'     => 'Resources/views/index.blade.php',
+            'views/master'    => 'Resources/views/layouts/master.blade.php',
             'scaffold/config' => 'Config/config.php',
-            'composer' => 'composer.json',
-            'assets/js/app' => 'Resources/assets/js/app.js',
+            'composer'        => 'composer.json',
+            'assets/js/app'   => 'Resources/assets/js/app.js',
             'assets/sass/app' => 'Resources/assets/sass/app.scss',
-            'webpack' => 'webpack.mix.js',
-            'package' => 'package.json',
+            'webpack'         => 'webpack.mix.js',
+            'package'         => 'package.json',
         ],
         'replacements' => [
-            'routes/web' => ['LOWER_NAME', 'STUDLY_NAME'],
-            'routes/api' => ['LOWER_NAME'],
-            'webpack' => ['LOWER_NAME'],
-            'json' => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE'],
-            'views/index' => ['LOWER_NAME'],
-            'views/master' => ['LOWER_NAME', 'STUDLY_NAME'],
+            'routes/web'      => ['LOWER_NAME', 'STUDLY_NAME'],
+            'routes/api'      => ['LOWER_NAME'],
+            'webpack'         => ['LOWER_NAME'],
+            'json'            => ['LOWER_NAME', 'STUDLY_NAME', 'MODULE_NAMESPACE'],
+            'views/index'     => ['LOWER_NAME'],
+            'views/master'    => ['LOWER_NAME', 'STUDLY_NAME'],
             'scaffold/config' => ['STUDLY_NAME'],
-            'composer' => [
+            'composer'        => [
                 'LOWER_NAME',
                 'STUDLY_NAME',
                 'VENDOR',
@@ -54,7 +54,7 @@ return [
                 'MODULE_NAMESPACE',
             ],
         ],
-        'gitkeep' => true,
+        'gitkeep'      => FALSE,
     ],
     'paths' => [
         /*
@@ -97,29 +97,29 @@ return [
         | Set the generate key to false to not generate that folder
         */
         'generator' => [
-            'config' => ['path' => 'Config', 'generate' => true],
-            'command' => ['path' => 'Console', 'generate' => false],
-            'migration' => ['path' => 'Database/Migrations', 'generate' => false],
-            'seeder' => ['path' => 'Database/Seeders', 'generate' => false],
-            'factory' => ['path' => 'Database/factories', 'generate' => false],
-            'model' => ['path' => 'Entities', 'generate' => false],
-            'controller' => ['path' => 'Http/Controllers', 'generate' => true],
-            'filter' => ['path' => 'Http/Middleware', 'generate' => false],
-            'request' => ['path' => 'Http/Requests', 'generate' => true],
-            'provider' => ['path' => 'Providers', 'generate' => true],
-            'assets' => ['path' => 'Resources/assets', 'generate' => false],
-            'lang' => ['path' => 'Resources/lang', 'generate' => false],
-            'views' => ['path' => 'Resources/views', 'generate' => false],
-            'test' => ['path' => 'Tests', 'generate' => false],
-            'repository' => ['path' => 'Repositories', 'generate' => false],
-            'event' => ['path' => 'Events', 'generate' => false],
-            'listener' => ['path' => 'Listeners', 'generate' => false],
-            'policies' => ['path' => 'Policies', 'generate' => false],
-            'rules' => ['path' => 'Rules', 'generate' => false],
-            'jobs' => ['path' => 'Jobs', 'generate' => false],
-            'emails' => ['path' => 'Emails', 'generate' => false],
-            'notifications' => ['path' => 'Notifications', 'generate' => false],
-            'resource' => ['path' => 'Transformers', 'generate' => false],
+            'config'        => ['path' => 'Config', 'generate' => TRUE],
+            'command'       => ['path' => 'Console', 'generate' => FALSE],
+            'migration'     => ['path' => 'Database/Migrations', 'generate' => FALSE],
+            'seeder'        => ['path' => 'Database/Seeders', 'generate' => FALSE],
+            'factory'       => ['path' => 'Database/factories', 'generate' => FALSE],
+            'model'         => ['path' => 'Entities', 'generate' => FALSE],
+            'controller'    => ['path' => 'Http/Controllers', 'generate' => TRUE],
+            'filter'        => ['path' => 'Http/Middleware', 'generate' => FALSE],
+            'request'       => ['path' => 'Http/Requests', 'generate' => TRUE],
+            'provider'      => ['path' => 'Providers', 'generate' => TRUE],
+            'assets'        => ['path' => 'Resources/assets', 'generate' => FALSE],
+            'lang'          => ['path' => 'Resources/lang', 'generate' => FALSE],
+            'views'         => ['path' => 'Resources/views', 'generate' => FALSE],
+            'test'          => ['path' => 'Tests', 'generate' => FALSE],
+            'repository'    => ['path' => 'Repositories', 'generate' => FALSE],
+            'event'         => ['path' => 'Events', 'generate' => FALSE],
+            'listener'      => ['path' => 'Listeners', 'generate' => FALSE],
+            'policies'      => ['path' => 'Policies', 'generate' => FALSE],
+            'rules'         => ['path' => 'Rules', 'generate' => FALSE],
+            'jobs'          => ['path' => 'Jobs', 'generate' => FALSE],
+            'emails'        => ['path' => 'Emails', 'generate' => FALSE],
+            'notifications' => ['path' => 'Notifications', 'generate' => FALSE],
+            'resource'      => ['path' => 'Transformers', 'generate' => FALSE],
         ],
     ],
     /*
@@ -133,8 +133,8 @@ return [
     */
 
     'scan' => [
-        'enabled' => false,
-        'paths' => [
+        'enabled' => FALSE,
+        'paths'   => [
             base_path('vendor/*/*'),
         ],
     ],
@@ -148,10 +148,10 @@ return [
     */
 
     'composer' => [
-        'vendor' => 'nwidart',
+        'vendor' => 'z1lab',
         'author' => [
-            'name' => 'Nicolas Widart',
-            'email' => 'n.widart@gmail.com',
+            'name'  => 'Webmster',
+            'email' => 'webmaster@z1lab.com.br',
         ],
     ],
     /*
@@ -162,9 +162,9 @@ return [
     | Here is the config for setting up caching feature.
     |
     */
-    'cache' => [
-        'enabled' => false,
-        'key' => 'laravel-modules',
+    'cache'    => [
+        'enabled'  => FALSE,
+        'key'      => 'laravel-modules',
         'lifetime' => 60,
     ],
     /*
@@ -175,7 +175,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'register' => [
-        'translations' => false,
+        'translations' => FALSE,
         /**
          * load files on boot or register method
          *
@@ -183,6 +183,6 @@ return [
          *
          * @example boot|register
          */
-        'files' => 'register',
+        'files'        => 'register',
     ],
 ];
