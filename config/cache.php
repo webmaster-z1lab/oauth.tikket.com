@@ -90,4 +90,5 @@ return [
 
     'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache'),
 
+    'lifetime' => env('APP_ENV') === 'production' && env('CACHE_LIFETIME') ? env('CACHE_LIFETIME', 10) : 0,
 ];
