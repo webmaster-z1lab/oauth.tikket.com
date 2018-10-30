@@ -17,6 +17,8 @@ class CreateUsersTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id')->unique();
             $table->string('name');
+            $table->string('referer');
+            $table->string('password');
             $table->string('social_name')->nullable();
             $table->string('nickname')->nullable();
             $table->string('username')->nullable();
@@ -25,7 +27,6 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('gender')->nullable();
             $table->date('birthdate')->nullable();
-            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

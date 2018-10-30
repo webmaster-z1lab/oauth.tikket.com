@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RegisterRequest;
+use App\Traits\AuthResponses;
 use Illuminate\Http\Response;
 use Modules\User\Repositories\UserRepository;
 use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
+    use AuthResponses;
+
     /**
      * @var UserRepository
      */
@@ -31,24 +34,14 @@ class RegisterController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        $user = $this->repository->create($request->only(['name', 'email', 'password']));
+        $data = $request->only(['name', 'email', 'password']);
+        $data['referer'] = str_finish($request->server('HTTP_REFERER'), '/');
+
+        $user = $this->repository->create($data);
 
         event(new Registered($user));
 
-        return $this->respondWithToken(auth()->login($user));
-    }
-
-    /**
-     * @param $token
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function respondWithToken($token)
-    {
-        return response()->json([
-            'access_token' => $token,
-            'token_type'   => 'bearer',
-            'expires_in'   => (int)auth()->factory()->getTTL(),
-        ], Response::HTTP_OK);
+        return $this->respondWithToken(Response::HTTP_OK, auth()->login($user));
     }
 
 

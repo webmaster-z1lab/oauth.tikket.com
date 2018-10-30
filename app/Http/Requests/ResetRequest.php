@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests;
 
-class RegisterRequest extends FormRequest
+class ResetRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,9 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'     => 'required|string|min:4|max:100',
-            'email'    => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|confirmed|min:8',
+            'token'    => 'bail|required',
+            'email'    => 'bail|required|email|exists:users,email',
+            'password' => 'bail|required|confirmed|min:8',
         ];
     }
 }

@@ -10,6 +10,8 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Passport\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Notifications\ResetPasswordNotification;
+use App\Notifications\VerifyEmail;
 
 class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 {
@@ -35,6 +37,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         'gender',
         'birthdate',
         'avatar',
+        'referer',
     ];
 
     /**
@@ -139,6 +142,22 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    /**
+     * @param string $token
+     */
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPasswordNotification($this->attributes, $token));
+    }
+
+    /**
+     *
+     */
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmail());
     }
 
     protected static function boot()

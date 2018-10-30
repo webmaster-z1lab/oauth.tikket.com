@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\LoginRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
+use App\Traits\AuthResponses;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
 use Laravel\Passport\Passport;
@@ -13,7 +13,7 @@ use Illuminate\Http\Response;
 
 class AuthController extends Controller
 {
-    use ThrottlesLogins;
+    use ThrottlesLogins, AuthResponses;
 
     /**
      * @var string
@@ -42,11 +42,12 @@ class AuthController extends Controller
 
         $token = auth()->attempt($request->only(['email', 'password']));
 
-        if ($token) return $this->respondWithToken($token);
+        if (!$token) {
+            $this->incrementLoginAttempts($request);
+            $this->sendFailedResponse(Response::HTTP_UNAUTHORIZED);
+        }
 
-        $this->incrementLoginAttempts($request);
-
-        return $this->sendFailedLoginResponse();
+        return $this->respondWithToken(Response::HTTP_OK, $token);
     }
 
     /**
@@ -55,15 +56,13 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-        if ($request->bearerToken() != NULL) {
-            $token = (new Parser())->parse($request->bearerToken());
+        if ($request->bearerToken() === NULL) $this->sendFailedResponse(Response::HTTP_UNAUTHORIZED);
 
-            $this->revokeTokens($token->getClaim('jti'));
+        $token = (new Parser())->parse($request->bearerToken());
 
-            return response()->json(['success' => 'Logged out'], Response::HTTP_RESET_CONTENT);
-        }
+        $this->revokeTokens($token->getClaim('jti'));
 
-        return $this->sendFailedLoginResponse();
+        return $this->sendSuccessResponse(Response::HTTP_RESET_CONTENT, __('logged out'));
     }
 
     /**
@@ -75,40 +74,15 @@ class AuthController extends Controller
     }
 
     /**
-     * @param $token
-     * @return \Illuminate\Http\JsonResponse
-     */
-    protected function respondWithToken($token)
-    {
-        return response()->json([
-            'access_token' => $token,
-            'token_type'   => 'bearer',
-            'expires_in'   => (int)auth()->factory()->getTTL(),
-        ], Response::HTTP_OK);
-    }
-
-    /**
-     * @param array $errors
-     */
-    protected function sendFailedLoginResponse($errors = [])
-    {
-        if (empty($errors)) $errors = [$this->username => __('auth.failed')];
-
-        throw new HttpResponseException(response()->json(['errors' => $errors], Response::HTTP_UNAUTHORIZED));
-    }
-
-    /**
      * @param Request $request
      */
     protected function sendLockoutResponse(Request $request)
     {
-        $seconds = $this->limiter()->availableIn(
-            $this->throttleKey($request)
-        );
+        $seconds = $this->limiter()->availableIn($this->throttleKey($request));
 
         $errors = [$this->username() => [\Lang::get('auth.throttle', ['seconds' => $seconds])]];
 
-        $this->sendFailedLoginResponse($errors);
+        $this->sendFailedResponse(Response::HTTP_UNAUTHORIZED, $errors);
     }
 
     /**
