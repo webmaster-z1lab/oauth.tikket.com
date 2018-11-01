@@ -45,4 +45,13 @@ class Address extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getFormattedAttribute()
+    {
+        $postal = substr_replace($this->attributes['postal_code'], '-', 5, 0);
+
+        return "{$this->attributes['street']}, {$this->attributes['number']} - {$this->attributes['district']}, {$this->attributes['complement']} "
+            . PHP_EOL .
+            "{$this->attributes['city']}, {$this->attributes['state']} - {$postal}";
+    }
 }

@@ -22,7 +22,7 @@ interface RepositoryInterface
      * @param array  $data
      * @return mixed
      */
-    public function update(string $id, array $data);
+    public function update(array $data, string $id);
 
     /**
      * @param string $id
@@ -32,9 +32,10 @@ interface RepositoryInterface
 
     /**
      * @param string $id
+     * @param array  $with
      * @return mixed
      */
-    public function find(string $id);
+    public function find(string $id, array $with = []);
 
     /**
      * @param int $items

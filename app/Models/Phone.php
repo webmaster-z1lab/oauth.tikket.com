@@ -41,10 +41,11 @@ class Phone extends Model
     /**
      * @return string
      */
-    public function getFormattedPhoneAttribute()
+    public function getFormattedAttribute()
     {
-        return '(' . $this->attributes['area_code'] . ') ' .
-            substr($this->attributes['phone'], 0, -4) . '-' . substr($this->attributes['phone'], -4);
+        $start = strlen($this->attributes['phone']) === 8 ? 4 : 5;
+
+        return "({$this->attributes['area_code']}) " . substr_replace($this->attributes['phone'], '-', $start, 0);
     }
 
     /**

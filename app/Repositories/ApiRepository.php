@@ -47,7 +47,7 @@ abstract class ApiRepository implements RepositoryInterface
      * @param array  $data
      * @return mixed | $this->model
      */
-    public function update(string $id, array $data)
+    public function update(array $data, string $id)
     {
         $item = $this->find($id);
         $item->update($data);
@@ -66,11 +66,14 @@ abstract class ApiRepository implements RepositoryInterface
 
     /**
      * @param string $id
-     * @return mixed | $this->model
+     * @param array  $with
+     * @return mixed
      */
-    public function find(string $id)
+    public function find(string $id, array $with = [])
     {
-        $item = \Cache::remember("{$this->cacheKey}-{$id}", $this->cacheDefault(), function () use ($id) {
+        $item = \Cache::remember("{$this->cacheKey}-{$id}", $this->cacheDefault(), function () use ($id, $with) {
+            if(!empty($with)) return $this->model->with($with)->find($id);
+
             return $this->model->find($id);
         });
 

@@ -34,7 +34,18 @@ class UserRepository extends ApiRepository
     public function create(array $data)
     {
         $data['avatar'] = $this->avatar($data['name']);
+        $data['referer'] = $this->referer($data['referer']);
 
         return $this->model->create($data);
+    }
+
+    private function referer($url)
+    {
+        $data = parse_url($url);
+        $result = "{$data['scheme']}://{$data['host']}";
+
+        if($data['port'] !== 80) $result .= ":{$data['port']}";
+
+        return "$result/";
     }
 }

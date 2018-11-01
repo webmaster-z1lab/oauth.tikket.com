@@ -55,22 +55,14 @@ abstract class ApiController extends Controller
 
     /**
      * @param string $id
+     * @param array  $with
      * @return \Illuminate\Http\Resources\Json\Resource
      */
-    public function show(string $id)
+    public function show(string $id, array $with = [])
     {
-        return $this->makeResource($this->repository->find($id));
+        return $this->makeResource($this->repository->find($id, $with));
     }
 
-    /**
-     * @param Request $request
-     * @param string  $id
-     * @return \Illuminate\Http\Resources\Json\Resource
-     */
-    public function update(Request $request, string $id)
-    {
-        return $this->makeResource($this->repository->update($id, $request->all()));
-    }
 
     /**
      * @param string $id

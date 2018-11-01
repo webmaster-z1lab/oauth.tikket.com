@@ -11,11 +11,10 @@
 |
 */
 Route::group([
-    'middleware' => ['api.v:1', 'auth'],
+    'middleware' => ['api.v:1'],
     'prefix'     => 'v1',
 ], function () {
-    Route::apiResource('users', 'UserController');
+    Route::apiResource('users', 'UserController')->except('index', 'store');
+    Route::apiResource('addresses', 'AddressController')->except('index', 'update');
+    Route::apiResource('phones', 'PhoneController')->except('index', 'update');
 });
-
-
-

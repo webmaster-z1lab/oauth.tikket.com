@@ -35,7 +35,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         'email',
         'password',
         'gender',
-        'birthdate',
+        'birth_date',
         'avatar',
         'referer',
     ];
@@ -50,7 +50,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         'remember_token',
     ];
 
-    protected $dates = ['birthdate'];
+    protected $dates = ['birth_date'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -87,12 +87,12 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
     /**
      * @param $value
      */
-    public function setBirthdateAttribute($value)
+    public function setBirthDateAttribute($value)
     {
         if (filled($value) && is_string($value)) {
-            $this->attributes['birthdate'] = Carbon::createFromFormat('d/m/Y', $value);
+            $this->attributes['birth_date'] = Carbon::createFromFormat('d/m/Y', $value);
         } else {
-            $this->attributes['birthdate'] = $value;
+            $this->attributes['birth_date'] = $value;
         }
     }
 

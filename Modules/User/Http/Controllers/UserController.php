@@ -3,22 +3,41 @@
 namespace Modules\User\Http\Controllers;
 
 use App\Http\Controllers\ApiController;
-use Illuminate\Http\Request;
+use Modules\User\Http\Requests\UserRequest;
 use Modules\User\Repositories\UserRepository;
+
 
 class UserController extends ApiController
 {
+    /**
+     * UserController constructor.
+     *
+     * @param UserRepository $repository
+     */
     public function __construct(UserRepository $repository)
     {
-        parent::__construct($repository, 'Place');
+        parent::__construct($repository, 'User');
     }
 
     /**
-     * @param Request $request
+     * @param string $id
+     * @param array  $with
      * @return \Illuminate\Http\Resources\Json\Resource
      */
-    public function store(Request $request)
+    public function show(string $id, array $with = [])
     {
-        return parent::makeResource($this->repository->create($request->all()));
+        $with = ['address', 'phone'];
+
+        return parent::show($id, $with);
+    }
+
+    /**
+     * @param UserRequest $request
+     * @param string      $id
+     * @return \Illuminate\Http\Resources\Json\Resource
+     */
+    public function update(UserRequest $request, string $id)
+    {
+        return parent::makeResource($this->repository->update($request->all(), $id));
     }
 }
