@@ -3,6 +3,7 @@
 namespace Modules\User\Http\Controllers;
 
 use App\Http\Controllers\ApiController;
+use Modules\Form\Http\Resource\Form;
 use Modules\User\Http\Requests\UserRequest;
 use Modules\User\Repositories\UserRepository;
 
@@ -39,5 +40,14 @@ class UserController extends ApiController
     public function update(UserRequest $request, string $id)
     {
         return parent::makeResource($this->repository->update($request->all(), $id));
+    }
+
+    /**
+     * @param string $id
+     * @return Form
+     */
+    public function form(string $id)
+    {
+        return new Form($this->repository->form($id));
     }
 }

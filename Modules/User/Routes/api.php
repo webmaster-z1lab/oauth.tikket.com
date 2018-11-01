@@ -17,4 +17,8 @@ Route::group([
     Route::apiResource('users', 'UserController')->except('index', 'store');
     Route::apiResource('addresses', 'AddressController')->except('index', 'update');
     Route::apiResource('phones', 'PhoneController')->except('index', 'update');
+
+    Route::group(['prefix' => 'users'], function () {
+        Route::get('{user}/form', 'UserController@form')->name('users.form');
+    });
 });
