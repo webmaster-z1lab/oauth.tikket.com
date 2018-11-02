@@ -22,7 +22,7 @@ class User extends Resource
     {
         return [
             'type'          => 'users',
-            'id'            => $this->id,
+            'id'            => $this->user_id,
             'attributes'    => [
                 'name'        => $this->name,
                 'social_name' => $this->social_name,
@@ -44,11 +44,11 @@ class User extends Resource
     {
         return [
             'links' => [
-                'self' => route('users.show', $this->id),
+                'self' => route('users.show', $this->user_id),
             ],
             'meta'  => [
                 'forms' => [
-                    'profile' => route('users.form.profile', $this->id),
+                    'profile' => route('users.form.profile', $this->user_id),
                 ],
             ],
         ];

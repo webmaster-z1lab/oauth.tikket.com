@@ -62,8 +62,8 @@ class UserRepository extends ApiRepository
         $user = $this->find($id);
 
         $form = new Form;
-        $form->self = route('users.form.profile', $user->id);
-        $form->action = route('users.update', $user->id);
+        $form->self = route('users.form.profile', $user->user_id);
+        $form->action = route('users.update', $user->user_id);
 
         $inputs['name'] = new Text;
         $inputs['social_name'] = new Text;
