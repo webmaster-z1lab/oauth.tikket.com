@@ -45,10 +45,15 @@ class User extends Resource
         return [
             'links' => [
                 'self' => route('users.show', $this->id),
-                'related' => route('users.form', $this->id)
+            ],
+            'meta'  => [
+                'forms' => [
+                    'profile' => route('users.form.profile', $this->id),
+                ],
             ],
         ];
     }
+
 
     private function getAddress($address)
     {
@@ -67,10 +72,10 @@ class User extends Resource
         if (NULL === $phone) return NULL;
 
         return [
+            'data'  => api_resource('Phone')->make($phone),
             'links' => [
                 'self' => route('phones.show', $this->id),
             ],
-            'data'  => api_resource('Phone')->make($phone),
         ];
     }
 }

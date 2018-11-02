@@ -16,12 +16,10 @@ use Modules\Form\Models\Form;
 use Modules\Form\Models\Inputs\Date;
 use Modules\Form\Models\Inputs\Selected;
 use Modules\Form\Models\Inputs\Text;
-use Modules\User\Http\Requests\UserRequest;
 
 class UserRepository extends ApiRepository
 {
     use HasAvatar;
-
     /**
      * UserRepository constructor.
      *
@@ -44,6 +42,17 @@ class UserRepository extends ApiRepository
         return $this->model->create($data);
     }
 
+    public function find(string $id, array $with = [])
+    {
+        $item = \Cache::remember("{$this->cacheKey}-{$id}", $this->cacheDefault(), function () use ($id, $with) {
+            return $this->findWhere($this->model->getAuthIdentifierName(), $id, $with);
+        });
+
+        if (NULL === $item) abort(404);
+
+        return $item;
+    }
+
     /**
      * @param string $id
      * @return \Illuminate\Support\Collection
@@ -53,7 +62,7 @@ class UserRepository extends ApiRepository
         $user = $this->find($id);
 
         $form = new Form;
-        $form->self = route('users.form', $user->id);
+        $form->self = route('users.form.profile', $user->id);
         $form->action = route('users.update', $user->id);
 
         $inputs['name'] = new Text;

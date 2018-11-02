@@ -21,18 +21,6 @@ class UserController extends ApiController
     }
 
     /**
-     * @param string $id
-     * @param array  $with
-     * @return \Illuminate\Http\Resources\Json\Resource
-     */
-    public function show(string $id, array $with = [])
-    {
-        $with = ['address', 'phone'];
-
-        return parent::show($id, $with);
-    }
-
-    /**
      * @param UserRequest $request
      * @param string      $id
      * @return \Illuminate\Http\Resources\Json\Resource

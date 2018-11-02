@@ -72,9 +72,7 @@ abstract class ApiRepository implements RepositoryInterface
     public function find(string $id, array $with = [])
     {
         $item = \Cache::remember("{$this->cacheKey}-{$id}", $this->cacheDefault(), function () use ($id, $with) {
-            if(!empty($with)) return $this->model->with($with)->find($id);
-
-            return $this->model->find($id);
+            return $this->model->with($with)->find($id);
         });
 
         if (NULL === $item) abort(404);
@@ -96,11 +94,12 @@ abstract class ApiRepository implements RepositoryInterface
     /**
      * @param string $column
      * @param        $value
+     * @param array  $with
      * @return mixed
      */
-    public function findWhere(string $column, $value)
+    public function findWhere(string $column, $value, array $with = [])
     {
-        $item = $this->model->where($column, $value)->first();
+        $item = $this->model->with($with)->where($column, $value)->first();
 
         if (NULL === $item) abort(404);
 

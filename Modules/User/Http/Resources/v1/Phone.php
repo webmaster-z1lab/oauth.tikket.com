@@ -19,11 +19,10 @@ class Phone extends Resource
             'id'         => $this->id,
             'attributes' => [
                 'area_code'   => $this->area_code,
-                'phone'       => $this->phone,
+                'number'       => $this->phone,
                 'is_whatsapp' => $this->is_whatsapp,
                 'formatted'   => $this->formatted,
             ],
-            ''
         ];
     }
 

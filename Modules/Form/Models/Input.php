@@ -52,7 +52,7 @@ class Input extends Model
      */
     public function setLabelAttribute($value)
     {
-        $this->attributes['label'] = __("form.$value");
+        $this->attributes['label'] = trans("form.$value");
     }
 
     /**

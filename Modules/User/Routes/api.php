@@ -19,6 +19,6 @@ Route::group([
     Route::apiResource('phones', 'PhoneController')->except('index', 'update');
 
     Route::group(['prefix' => 'users'], function () {
-        Route::get('{user}/form', 'UserController@form')->name('users.form');
+        Route::get('{user}/form/profile', 'UserController@form')->name('users.form.profile');
     });
 });
