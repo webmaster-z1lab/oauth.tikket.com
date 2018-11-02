@@ -55,7 +55,7 @@ class UserRepository extends ApiRepository
 
     /**
      * @param string $id
-     * @return \Illuminate\Support\Collection
+     * @return Form
      */
     public function form(string $id)
     {
@@ -81,7 +81,7 @@ class UserRepository extends ApiRepository
 
         $form->createMany($inputs);
 
-        return collect($form->toArray());
+        return $form;
     }
 
     /**

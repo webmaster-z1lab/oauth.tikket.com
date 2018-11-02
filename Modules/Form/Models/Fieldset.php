@@ -32,7 +32,7 @@ class Fieldset extends Model
      * @param Input $input
      * @return $this
      */
-    public function add($input)
+    public function create($input)
     {
         $this->setInputsAttribute($input->toArray());
 
@@ -56,7 +56,7 @@ class Fieldset extends Model
         foreach ($fields as $field) {
             if ($field instanceof Fieldset) throw new MassAssignmentException('createMany accepts only Inputs');
 
-            $this->add($field);
+            $this->create($field);
         }
 
         return $this;

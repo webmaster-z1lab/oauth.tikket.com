@@ -14,9 +14,11 @@ use Jenssegers\Model\Model;
 
 class Form extends Model
 {
+    const FORM = [];
+    const SELF = '';
+    const ACTION = '';
     const METHOD = 'POST';
     const FIELDSET = FALSE;
-    const FORM = [];
     /**
      * @var array
      */
@@ -30,9 +32,11 @@ class Form extends Model
      * @var array
      */
     protected $attributes = [
-        'method'    => self::METHOD,
         'form'      => self::FORM,
+        'method'    => self::METHOD,
         'field_set' => self::FIELDSET,
+        'self'      => self::ACTION,
+        'action'    => self::SELF,
     ];
 
     /**
@@ -49,7 +53,7 @@ class Form extends Model
      * @param $field
      * @return $this
      */
-    public function add($field)
+    public function create($field)
     {
         if ($field instanceof Fieldset) {
             $this->fieldset($field);
@@ -69,7 +73,7 @@ class Form extends Model
         foreach ($fields as $field) {
             if($field instanceof Fieldset) throw new MassAssignmentException('createMany accepts only Inputs');
 
-            $this->add($field);
+            $this->create($field);
         }
 
         return $this;

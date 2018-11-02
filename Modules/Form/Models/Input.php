@@ -8,7 +8,6 @@
 
 namespace Modules\Form\Models;
 
-
 use Jenssegers\Model\Model;
 
 class Input extends Model
@@ -69,5 +68,71 @@ class Input extends Model
             'default' => $visible,
             'cascade' => $cascade,
         ];
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function name(string $value)
+    {
+        $this->attributes['name'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function col(string $value)
+    {
+        $this->attributes['col'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function validate(string $value)
+    {
+        $this->attributes['validate'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function type(string $value)
+    {
+        $this->attributes['type'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function placeholder(string $value)
+    {
+        $this->attributes['placeholder'] = $value;
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function typeInput(string $value)
+    {
+        $this->attributes['type_input'] = $value;
+
+        return $this;
     }
 }

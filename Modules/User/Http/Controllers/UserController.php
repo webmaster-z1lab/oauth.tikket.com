@@ -3,10 +3,9 @@
 namespace Modules\User\Http\Controllers;
 
 use App\Http\Controllers\ApiController;
-use Modules\Form\Http\Resource\Form;
+use Modules\Form\Builder;
 use Modules\User\Http\Requests\UserRequest;
 use Modules\User\Repositories\UserRepository;
-
 
 class UserController extends ApiController
 {
@@ -32,10 +31,10 @@ class UserController extends ApiController
 
     /**
      * @param string $id
-     * @return Form
+     * @return \Modules\Form\Http\Resource\Form
      */
     public function form(string $id)
     {
-        return new Form($this->repository->form($id));
+        return (new Builder($this->repository->form($id)))->toJson();
     }
 }
