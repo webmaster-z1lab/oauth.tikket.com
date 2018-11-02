@@ -77,7 +77,7 @@ class UserRepository extends ApiRepository
             }
         }
 
-        $inputs['gender']->values($this->genders());
+        $inputs['gender']->data($this->genders());
 
         $form->createMany($inputs);
 

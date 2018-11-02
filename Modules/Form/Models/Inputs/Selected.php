@@ -8,7 +8,6 @@
 
 namespace Modules\Form\Models\Inputs;
 
-
 use Modules\Form\Models\Input;
 
 class Selected extends Input
@@ -29,18 +28,44 @@ class Selected extends Input
     }
 
     /**
-     * @param string $key
-     * @param string $par
-     * @param array  $values
+     * @param string|array $label
+     * @param string       $value
+     * @param array        $data
      * @return $this
      */
-    public function options(string $key = '', string $par = '', array $values = [])
+    public function options($label = '', string $value = '', array $data = [])
     {
         $this->attributes['options'] = [
-            'key'    => $key,
-            'par'    => $par,
-            'values' => $values,
+            'label'  => (NULL !== $label) ? $label : '',
+            'value'  => $value,
+            'data' => $data,
         ];
+
+        return $this;
+    }
+
+    /**
+     * @param string| array $label
+     * @return $this
+     */
+    public function label($label)
+    {
+        if (isset($this->attributes['options']['label'])) {
+            array_push($this->attributes['options']['label'], $label);
+        } else {
+            $this->attributes['options']['label'] = $label;
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param string $value
+     * @return $this
+     */
+    public function value(string $value)
+    {
+        $this->attributes['options']['value'] = $value;
 
         return $this;
     }
@@ -48,10 +73,10 @@ class Selected extends Input
     /**
      * @param array $array
      */
-    public function values(array $array)
+    public function data(array $array)
     {
-        if (isset($this->attributes['options']['values'])) {
-            $this->attributes['options']['values'] = $array;
+        if (isset($this->attributes['options']['data'])) {
+            $this->attributes['options']['data'] = $array;
         } else {
             $this->attributes['options'] = $array;
         }
