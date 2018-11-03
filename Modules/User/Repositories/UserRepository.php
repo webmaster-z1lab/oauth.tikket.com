@@ -10,12 +10,12 @@ namespace Modules\User\Repositories;
 
 
 use App\Models\User;
-use App\Repositories\ApiRepository;
 use App\Traits\HasAvatar;
 use Z1lab\Form\Models\Form;
 use Z1lab\Form\Models\Inputs\Date;
 use Z1lab\Form\Models\Inputs\Selected;
 use Z1lab\Form\Models\Inputs\Text;
+use Z1lab\JsonApi\Repositories\ApiRepository;
 
 class UserRepository extends ApiRepository
 {

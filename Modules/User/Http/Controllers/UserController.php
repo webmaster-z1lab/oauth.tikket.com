@@ -2,10 +2,10 @@
 
 namespace Modules\User\Http\Controllers;
 
-use App\Http\Controllers\ApiController;
 use Z1lab\Form\Builder;
 use Modules\User\Http\Requests\UserRequest;
 use Modules\User\Repositories\UserRepository;
+use Z1lab\JsonApi\Http\Controllers\ApiController;
 
 class UserController extends ApiController
 {

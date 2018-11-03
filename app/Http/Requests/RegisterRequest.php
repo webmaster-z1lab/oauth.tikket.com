@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
-class RegisterRequest extends FormRequest
+use Z1lab\JsonApi\Http\Requests\ApiFormRequest;
+
+class RegisterRequest extends ApiFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

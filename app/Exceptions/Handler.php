@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Z1lab\JsonApi\Exceptions\ApiHandler;
 
 class Handler extends ExceptionHandler
 {

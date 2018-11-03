@@ -2,9 +2,10 @@
 
 namespace Modules\User\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 
-class AddressRequest extends FormRequest
+use Z1lab\JsonApi\Http\Requests\ApiFormRequest;
+
+class AddressRequest extends ApiFormRequest
 {
     /**
      * Get the validation rules that apply to the request.

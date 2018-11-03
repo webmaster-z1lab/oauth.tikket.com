@@ -2,10 +2,9 @@
 
 namespace Modules\User\Http\Controllers;
 
-use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use Modules\User\Repositories\AddressRepository;
-
+use Z1lab\JsonApi\Http\Controllers\ApiController;
 
 class AddressController extends ApiController
 {

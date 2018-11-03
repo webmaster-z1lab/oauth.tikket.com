@@ -10,7 +10,7 @@ namespace Modules\User\Repositories;
 
 
 use App\Models\Address;
-use App\Repositories\ApiRepository;
+use Z1lab\JsonApi\Repositories\ApiRepository;
 
 class AddressRepository extends ApiRepository
 {

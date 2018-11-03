@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
-class RecoveryRequest extends FormRequest
+use Z1lab\JsonApi\Http\Requests\ApiFormRequest;
+
+class RecoveryRequest extends ApiFormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

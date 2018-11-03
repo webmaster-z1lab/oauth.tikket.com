@@ -2,8 +2,8 @@
 
 namespace Modules\User\Http\Controllers;
 
-use App\Http\Controllers\ApiController;
 use Modules\User\Repositories\PhoneRepository;
+use Z1lab\JsonApi\Http\Controllers\ApiController;
 
 
 class PhoneController extends ApiController

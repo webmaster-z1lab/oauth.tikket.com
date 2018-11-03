@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f0dcc1a4b752a236db7ac452cbbd4ce2",
+    "content-hash": "1d9d17540e0cb41fda359c2d21d4b8bf",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3916,6 +3916,61 @@
                 "environment"
             ],
             "time": "2018-07-29T20:33:41+00:00"
+        },
+        {
+            "name": "z1lab/laravel-json-api",
+            "version": "v0.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/z1lab/laravel-json-api.git",
+                "reference": "0d5056088bcabb2985879107dfd446d5435be9d9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/z1lab/laravel-json-api/zipball/0d5056088bcabb2985879107dfd446d5435be9d9",
+                "reference": "0d5056088bcabb2985879107dfd446d5435be9d9",
+                "shasum": ""
+            },
+            "require": {
+                "barryvdh/laravel-cors": "^0.11.2",
+                "barryvdh/laravel-httpcache": "^0.3.4",
+                "illuminate/contracts": "5.7.*",
+                "illuminate/http": "5.7.*",
+                "illuminate/routing": "5.7.*",
+                "illuminate/support": "5.7.*",
+                "illuminate/validation": "5.7.*",
+                "juampi92/api-resources": "1.1.*",
+                "optimus/heimdal": "~1.0",
+                "php": ">=7.1.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Z1lab\\JsonApi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Olimar Ferraz",
+                    "email": "webmaster@z1lab.com.br"
+                }
+            ],
+            "description": "A minimal library for normalize Laravel app to return Json Api results.",
+            "homepage": "https://github.com/z1lab/laravel-json-api",
+            "keywords": [
+                "api",
+                "json",
+                "laravel",
+                "resource"
+            ],
+            "time": "2018-11-03T01:32:41+00:00"
         },
         {
             "name": "z1lab/laravel-passport",

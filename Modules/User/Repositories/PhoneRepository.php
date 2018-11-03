@@ -10,7 +10,7 @@ namespace Modules\User\Repositories;
 
 
 use App\Models\Phone;
-use App\Repositories\ApiRepository;
+use Z1lab\JsonApi\Repositories\ApiRepository;
 
 class PhoneRepository extends ApiRepository
 {
