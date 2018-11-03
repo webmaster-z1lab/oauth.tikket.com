@@ -23,7 +23,8 @@
         "nwidart/laravel-modules": "^4.0",
         "optimus/heimdal": "~1.0",
         "tymon/jwt-auth": "1.0.*",
-        "z1lab/laravel-passport": "7.0.6-alpha"
+        "z1lab/laravel-passport": "7.0.6-alpha",
+        "z1lab/laravel-vue-form": "^0.0.2"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.5",

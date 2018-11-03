@@ -3,7 +3,7 @@
 namespace Modules\User\Http\Controllers;
 
 use App\Http\Controllers\ApiController;
-use Modules\Form\Builder;
+use Z1lab\Form\Builder;
 use Modules\User\Http\Requests\UserRequest;
 use Modules\User\Repositories\UserRepository;
 
@@ -31,7 +31,7 @@ class UserController extends ApiController
 
     /**
      * @param string $id
-     * @return \Modules\Form\Http\Resource\Form
+     * @return \Z1lab\Form\Http\Resource\Form
      */
     public function form(string $id)
     {
