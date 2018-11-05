@@ -41,6 +41,12 @@ class VerificationController extends Controller
         return $this->sendSuccessResponse(Response::HTTP_NO_CONTENT, 'OK');
     }
 
+    /**
+     * @todo Create logic for resend email confirmation
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function resend(Request $request)
     {
         if ($request->user()->hasVerifiedEmail()) {

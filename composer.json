@@ -18,7 +18,7 @@
         "laravolt/avatar": "^2.0",
         "nwidart/laravel-modules": "^4.0",
         "tymon/jwt-auth": "1.0.*",
-        "z1lab/laravel-json-api": "^0.0.1",
+        "z1lab/laravel-json-api": "^0.0.2",
         "z1lab/laravel-passport": "7.0.6-alpha",
         "z1lab/laravel-vue-form": "^0.0.2"
     },

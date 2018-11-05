@@ -2,7 +2,6 @@
 
 namespace Modules\User\Http\Controllers;
 
-use Z1lab\Form\Builder;
 use Modules\User\Http\Requests\UserRequest;
 use Modules\User\Repositories\UserRepository;
 use Z1lab\JsonApi\Http\Controllers\ApiController;
@@ -27,14 +26,5 @@ class UserController extends ApiController
     public function update(UserRequest $request, string $id)
     {
         return parent::makeResource($this->repository->update($request->all(), $id));
-    }
-
-    /**
-     * @param string $id
-     * @return \Z1lab\Form\Http\Resource\Form
-     */
-    public function form(string $id)
-    {
-        return (new Builder($this->repository->form($id)))->toJson();
     }
 }

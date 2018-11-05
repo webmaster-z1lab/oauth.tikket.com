@@ -11,10 +11,6 @@ namespace Modules\User\Repositories;
 
 use App\Models\User;
 use App\Traits\HasAvatar;
-use Z1lab\Form\Models\Form;
-use Z1lab\Form\Models\Inputs\Date;
-use Z1lab\Form\Models\Inputs\Selected;
-use Z1lab\Form\Models\Inputs\Text;
 use Z1lab\JsonApi\Repositories\ApiRepository;
 
 class UserRepository extends ApiRepository
@@ -54,37 +50,6 @@ class UserRepository extends ApiRepository
     }
 
     /**
-     * @param string $id
-     * @return Form
-     */
-    public function form(string $id)
-    {
-        $user = $this->find($id);
-
-        $form = new Form;
-        $form->self = route('users.form.profile', $user->user_id);
-        $form->action = route('users.update', $user->user_id);
-
-        $inputs['name'] = new Text;
-        $inputs['social_name'] = new Text;
-        $inputs['gender'] = new Selected;
-        $inputs['birth_date'] = new Date;
-
-        foreach ($user->toArray() as $key => $data) {
-            if(isset($inputs[$key])) {
-                $inputs[$key]->name = $key;
-                $inputs[$key]->value = $data;
-            }
-        }
-
-        $inputs['gender']->data($this->genders());
-
-        $form->createMany($inputs);
-
-        return $form;
-    }
-
-    /**
      * @param $url
      * @return string
      */
@@ -96,16 +61,5 @@ class UserRepository extends ApiRepository
         if ($data['port'] !== 80) $result .= ":{$data['port']}";
 
         return "$result/";
-    }
-
-    /**
-     * @return array
-     */
-    private function genders()
-    {
-        return [
-            __('male'),
-            __('female'),
-        ];
     }
 }
