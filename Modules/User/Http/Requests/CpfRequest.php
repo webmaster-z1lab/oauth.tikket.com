@@ -5,7 +5,7 @@ namespace Modules\User\Http\Requests;
 
 use Z1lab\JsonApi\Http\Requests\ApiFormRequest;
 
-class UserRequest extends ApiFormRequest
+class CpfRequest extends ApiFormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -15,11 +15,7 @@ class UserRequest extends ApiFormRequest
     public function rules()
     {
         return [
-            'name'       => 'bail|required|string|min:2|max:255',
-            'phone'      => 'bail|string|cell_phone',
-            'nickname'   => 'bail|nullable|string|min:3|max:50',
-            'gender'     => 'bail|nullable|string|max:20',
-            'birth_date' => 'bail|nullable|date',
+            'document' => 'bail|required|document|unique:users,cpf',
         ];
     }
 

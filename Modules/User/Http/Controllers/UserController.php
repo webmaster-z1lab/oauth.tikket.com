@@ -2,6 +2,7 @@
 
 namespace Modules\User\Http\Controllers;
 
+use Modules\User\Http\Requests\CpfRequest;
 use Modules\User\Http\Requests\UserRequest;
 use Modules\User\Repositories\UserRepository;
 use Z1lab\JsonApi\Http\Controllers\ApiController;
@@ -26,5 +27,15 @@ class UserController extends ApiController
     public function update(UserRequest $request, string $id)
     {
         return parent::makeResource($this->repository->update($request->all(), $id));
+    }
+
+    /**
+     * @param CpfRequest $request
+     * @param string     $id
+     * @return \Illuminate\Http\Resources\Json\Resource
+     */
+    public function cpf(CpfRequest $request, string $id)
+    {
+        return parent::makeResource($this->repository->update($request->only('cpf'), $id));
     }
 }

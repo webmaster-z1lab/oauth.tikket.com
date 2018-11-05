@@ -25,6 +25,7 @@ class User extends Resource
             'id'            => $this->user_id,
             'attributes'    => [
                 'name'        => $this->name,
+                'document'    => $this->getDocument($this->document),
                 'social_name' => $this->social_name,
                 'nickname'    => $this->nickname,
                 'username'    => $this->username,
@@ -77,5 +78,12 @@ class User extends Resource
                 'self' => route('phones.show', $this->id),
             ],
         ];
+    }
+
+    private function getDocument(string $document)
+    {
+        if (NULL !== $document) {
+            return '***.***.' . substr($document, 6, 3) . '-' . substr($document, 9, 2);
+        }
     }
 }

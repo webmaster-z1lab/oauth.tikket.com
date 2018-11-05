@@ -17,6 +17,7 @@
         "laravel/tinker": "^1.0",
         "laravolt/avatar": "^2.0",
         "nwidart/laravel-modules": "^4.0",
+        "respect/validation": "^1.1",
         "tymon/jwt-auth": "1.0.*",
         "z1lab/laravel-json-api": "^0.0.2",
         "z1lab/laravel-passport": "7.0.6-alpha",
