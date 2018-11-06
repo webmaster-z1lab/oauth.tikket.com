@@ -2,12 +2,18 @@
 
 namespace Modules\User\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\User\Http\Requests\AddressRequest;
 use Modules\User\Repositories\AddressRepository;
-use Z1lab\JsonApi\Http\Controllers\ApiController;
 
-class AddressController extends ApiController
+class AddressController extends Controller
 {
+    /**
+     * @var AddressRepository
+     */
+    protected $repository;
+
     /**
      * AddressController constructor.
      *
@@ -15,16 +21,34 @@ class AddressController extends ApiController
      */
     public function __construct(AddressRepository $repository)
     {
-        parent::__construct($repository, 'Address');
+        $this->repository = $repository;
     }
 
     /**
-     * @param Request $request
-     * @param string  $id
+     * @param AddressRequest $request
+     * @param string  $user
      * @return \Illuminate\Http\Resources\Json\Resource
      */
-    public function update(Request $request, string $id)
+    public function store(AddressRequest $request, string $user)
     {
-        return parent::makeResource($this->repository->update($request->all(), $id));
+        return api_resource('User')->make($this->repository->insert($request->all(), $user));
+    }
+
+    /**
+     * @param string $user
+     * @return \Illuminate\Http\Resources\Json\Resource
+     */
+    public function destroy(string $user)
+    {
+        return api_resource('User')->make($this->repository->destroy($user));
+    }
+
+    /**
+     * @param string $id
+     * @return \Illuminate\Http\Resources\Json\Resource
+     */
+    public function show(string $id)
+    {
+        return api_resource('Address')->make($this->repository->show($id));
     }
 }

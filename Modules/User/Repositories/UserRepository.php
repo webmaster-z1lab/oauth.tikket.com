@@ -46,7 +46,7 @@ class UserRepository extends ApiRepository
      */
     public function update(array $data, string $id)
     {
-        $this->setPhone($data, $id);
+        if (isset($data['phone'])) $this->setPhone($data, $id);
 
         return parent::update($data, $id);
     }
@@ -101,13 +101,8 @@ class UserRepository extends ApiRepository
     {
         $user = $this->find($id);
 
-        if (isset($data['phone'])) {
-            if (NULL === $user->phone) {
-                $user->phone()->create($data);
-            } else {
-                $user->phone->phone = $data['phone'];
-                $user->phone->save();
-            }
-        }
+        if (NULL !== $user->phone) $user->phone()->delete();
+
+        $user->phone()->create($data);
     }
 }

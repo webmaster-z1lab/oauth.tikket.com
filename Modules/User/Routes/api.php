@@ -15,14 +15,14 @@ Route::group([
     'prefix'     => 'v1',
 ], function () {
     Route::apiResource('users', 'UserController')->except('index', 'store');
-    Route::apiResource('addresses', 'AddressController')->except('index', 'update');
-    Route::apiResource('phones', 'PhoneController')->except('index', 'update');
 
     Route::group(['prefix' => 'users/{user}'], function () {
+        Route::get('form/profile', 'FormController@profile')->name('users.form.profile');
+
         Route::patch('cpf', 'UserController@changeCpf')->name('users.change.cpf');
         Route::patch('password', 'UserController@changePassword')->name('users.change.password');
         Route::patch('avatar', 'UserController@changeAvatar')->name('users.change.avatar');
 
-        Route::get('form/profile', 'FormController@profile')->name('users.form.profile');
+        Route::apiResource('addresses', 'AddressController')->only('show', 'store');
     });
 });

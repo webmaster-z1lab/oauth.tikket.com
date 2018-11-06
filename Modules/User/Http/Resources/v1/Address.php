@@ -29,17 +29,4 @@ class Address extends Resource
             ],
         ];
     }
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     * @return array
-     */
-    public function with($request)
-    {
-        return [
-            'links' => [
-                'self' => route('addresses.show', $this->id),
-            ],
-        ];
-    }
 }

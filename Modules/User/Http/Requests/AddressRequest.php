@@ -15,12 +15,12 @@ class AddressRequest extends ApiFormRequest
     public function rules()
     {
         return [
-            'street'     => 'bail|required|string',
+            'street'     => 'bail|required|string|max:255',
             'number'     => 'bail|nullable|number',
-            'complement' => 'bail|nullable|string',
-            'district'   => 'bail|required|string',
-            'city'       => 'bail|required|string',
-            'state'      => 'bail|required|string',
+            'complement' => 'bail|nullable|string|max:100',
+            'district'   => 'bail|required|string|max:100',
+            'city'       => 'bail|required|string|max:100',
+            'state'      => 'bail|required|string|max:2',
         ];
     }
 

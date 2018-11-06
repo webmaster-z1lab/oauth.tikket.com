@@ -21,7 +21,7 @@ class Phone extends Resource
                 'area_code'   => $this->area_code,
                 'number'       => $this->phone,
                 'is_whatsapp' => $this->is_whatsapp,
-                'formatted'   => $this->formatted,
+                'formatted'   => $this->formatted_phone,
             ],
         ];
     }

@@ -55,35 +55,43 @@ class User extends Resource
         ];
     }
 
-
+    /**
+     * @param $address
+     * @return array|null
+     */
     private function getAddress($address)
     {
         if (NULL === $address) return NULL;
 
         return [
             'links' => [
-                'self' => route('addresses.show', $this->id),
+                'self' => route('addresses.show', ['user' => $this->id, 'address' => $address->id]),
             ],
             'data'  => api_resource('Address')->make($address),
         ];
     }
 
+    /**
+     * @param $phone
+     * @return array|null
+     */
     private function getPhone($phone)
     {
         if (NULL === $phone) return NULL;
 
         return [
             'data'  => api_resource('Phone')->make($phone),
-            'links' => [
-                'self' => route('phones.show', $this->id),
-            ],
         ];
     }
 
-    private function getDocument(string $document)
+    /**
+     * @param string|NULL $document
+     * @return string
+     */
+    private function getDocument(string $document = NULL)
     {
-        if (NULL !== $document) {
-            return substr($document, 0, 3) . '.***.***-**';
-        }
+        if (NULL === $document) return NULL;
+
+        return substr($document, 0, 3) . '.***.***-**';
     }
 }

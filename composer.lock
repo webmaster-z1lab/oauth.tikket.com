@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "62a48c809889bf98d9b92ab4a633cde9",
+    "content-hash": "ce892702a9fb2aeef72c68ecf3227cfe",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3798,16 +3798,16 @@
         },
         {
             "name": "z1lab/laravel-passport",
-            "version": "v7.0.9-alpha",
+            "version": "v7.0.11-alpha",
             "source": {
                 "type": "git",
                 "url": "https://github.com/z1lab/laravel-passport.git",
-                "reference": "919a9828a2bc9d5ad4b5c5c7a6c3b1ae659457d4"
+                "reference": "eb496b8e7ceb81f8a3b6a9722e5f73613387d65f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/z1lab/laravel-passport/zipball/919a9828a2bc9d5ad4b5c5c7a6c3b1ae659457d4",
-                "reference": "919a9828a2bc9d5ad4b5c5c7a6c3b1ae659457d4",
+                "url": "https://api.github.com/repos/z1lab/laravel-passport/zipball/eb496b8e7ceb81f8a3b6a9722e5f73613387d65f",
+                "reference": "eb496b8e7ceb81f8a3b6a9722e5f73613387d65f",
                 "shasum": ""
             },
             "require": {
@@ -3866,7 +3866,7 @@
                 "oauth",
                 "passport"
             ],
-            "time": "2018-11-06T11:49:29+00:00"
+            "time": "2018-11-06T13:56:16+00:00"
         },
         {
             "name": "z1lab/laravel-vue-form",

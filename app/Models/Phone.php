@@ -22,7 +22,7 @@ class Phone extends Model
     ];
 
     protected $attributes = [
-        'verified_at' => NULL,
+        'phone_verified_at' => NULL,
         'is_whatsapp' => FALSE,
     ];
 
@@ -41,7 +41,7 @@ class Phone extends Model
     /**
      * @return string
      */
-    public function getFormattedAttribute()
+    public function getFormattedPhoneAttribute()
     {
         $start = strlen($this->attributes['phone']) === 8 ? 4 : 5;
 

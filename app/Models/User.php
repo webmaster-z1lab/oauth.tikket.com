@@ -103,7 +103,8 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         if (!$this->address()->exists()) return NULL;
 
-        $address = array_only($this->address->toArray(), ['street', 'number', 'complement', 'district', 'city', 'state', 'postal_code']);
+        $address = array_only($this->address->toArray(), ['id', 'street', 'number', 'complement', 'district', 'city', 'state', 'postal_code']);
+        $address['formatted'] = $this->address->formatted;
 
         return json_encode($address);
     }
