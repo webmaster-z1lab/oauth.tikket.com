@@ -41,7 +41,10 @@ class RegisterController extends Controller
 
         event(new Registered($user));
 
-        return $this->respondWithToken(Response::HTTP_OK, auth()->login($user));
+        $result = $user->createToken('login_token');
+
+        return $this->respondWithToken(Response::HTTP_OK, $result->accessToken,
+            $result->token->expires_at->getTimestamp());
     }
 
 

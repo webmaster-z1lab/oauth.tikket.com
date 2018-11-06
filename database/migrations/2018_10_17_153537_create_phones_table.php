@@ -19,6 +19,7 @@ class CreatePhonesTable extends Migration
             $table->string('area_code', 2);
             $table->string('phone', 9);
             $table->boolean('is_whatsapp')->default(false);
+            $table->timestamp('phone_verified_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

@@ -13,16 +13,17 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 trait AuthResponses
 {
     /**
-     * @param int    $http_response
+     * @param int $http_response
      * @param string $token
+     * @param int $expires_in
      * @return \Illuminate\Http\JsonResponse
      */
-    public function respondWithToken(int $http_response, string $token)
+    public function respondWithToken(int $http_response, string $token, int $expires_in)
     {
         return response()->json([
             'access_token' => $token,
             'token_type'   => 'bearer',
-            'expires_in'   => (int)auth()->factory()->getTTL(),
+            'expires_in'   => $expires_in,
         ], $http_response);
     }
 

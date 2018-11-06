@@ -20,6 +20,11 @@ class RecoveryController extends Controller
     private $token;
 
     /**
+     * @var int
+     */
+    private $expires_at;
+
+    /**
      * RecoveryController constructor.
      */
     public function __construct()
@@ -54,13 +59,13 @@ class RecoveryController extends Controller
 
         if ($response !== Password::PASSWORD_RESET) $this->sendFailedResponse(Response::HTTP_UNAUTHORIZED, ['email' => __($response)]);
 
-        return $this->respondWithToken(Response::HTTP_OK, $this->token);
+        return $this->respondWithToken(Response::HTTP_OK, $this->token, $this->expires_at);
     }
 
     /**
      * Reset the given user's password.
      *
-     * @param         $user
+     * @param  \App\Models\User       $user
      * @param  string $password
      * @return void
      */
@@ -71,6 +76,9 @@ class RecoveryController extends Controller
 
         event(new PasswordReset($user));
 
-        $this->token = auth()->login($user);
+        $result = $user->createToken('login_token');
+
+        $this->token = $result->accessToken;
+        $this->expires_at = $result->token->expires_at->getTimestamp();
     }
 }

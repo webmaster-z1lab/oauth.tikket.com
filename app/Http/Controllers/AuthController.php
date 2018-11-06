@@ -40,14 +40,17 @@ class AuthController extends Controller
             $this->sendLockoutResponse($request);
         }
 
-        $token = auth()->attempt($request->only(['email', 'password']));
-
-        if (!$token) {
+        /** @var \App\Models\User $user */
+        $user = \Auth::getProvider()->retrieveByCredentials($request->only(['email', 'password']));
+        if (!$user || !\Auth::getProvider()->validateCredentials($user, $request->only(['email', 'password']))) {
             $this->incrementLoginAttempts($request);
             $this->sendFailedResponse(Response::HTTP_UNAUTHORIZED);
         }
 
-        return $this->respondWithToken(Response::HTTP_OK, $token);
+        $result = $user->createToken('login_token');
+
+        return $this->respondWithToken(Response::HTTP_OK, $result->accessToken,
+            $result->token->expires_at->getTimestamp());
     }
 
     /**
