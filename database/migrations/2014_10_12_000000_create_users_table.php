@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->uuid('id')->primary();
             $table->uuid('user_id')->unique();
             $table->string('name');
+            $table->string('document')->nullable()->unique();
             $table->string('referer');
             $table->string('password');
             $table->string('social_name')->nullable();

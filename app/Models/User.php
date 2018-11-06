@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Notifications\ResetPasswordNotification;
+use App\Notifications\VerifyEmail;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,8 +12,6 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
 use Laravel\Passport\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-use App\Notifications\ResetPasswordNotification;
-use App\Notifications\VerifyEmail;
 
 class User extends Authenticatable implements MustVerifyEmail, JWTSubject
 {
@@ -38,6 +38,7 @@ class User extends Authenticatable implements MustVerifyEmail, JWTSubject
         'birth_date',
         'avatar',
         'referer',
+        'document',
     ];
 
     /**

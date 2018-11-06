@@ -16,6 +16,7 @@ use Z1lab\JsonApi\Repositories\ApiRepository;
 class UserRepository extends ApiRepository
 {
     use HasAvatar;
+
     /**
      * UserRepository constructor.
      *
@@ -32,12 +33,29 @@ class UserRepository extends ApiRepository
      */
     public function create(array $data)
     {
-        $data['avatar'] = $this->avatar($data['name']);
+        $data['avatar'] = $this->avatarFromName($data['name']);
         $data['referer'] = $this->referer($data['referer']);
 
         return $this->model->create($data);
     }
 
+    /**
+     * @param array  $data
+     * @param string $id
+     * @return bool|mixed|ApiRepository
+     */
+    public function update(array $data, string $id)
+    {
+        $this->setPhone($data, $id);
+
+        return parent::update($data, $id);
+    }
+
+    /**
+     * @param string $id
+     * @param array  $with
+     * @return User
+     */
     public function find(string $id, array $with = [])
     {
         $item = \Cache::remember("{$this->cacheKey}-{$id}", $this->cacheDefault(), function () use ($id, $with) {
@@ -47,6 +65,18 @@ class UserRepository extends ApiRepository
         if (NULL === $item) abort(404);
 
         return $item;
+    }
+
+    /**
+     * @param        $request
+     * @param string $id
+     * @return User
+     */
+    public function updateAvatar($request, string $id)
+    {
+        $data['avatar'] = $this->avatarFromFile($request);
+
+        return $this->update($data, $id);
     }
 
     /**
@@ -61,5 +91,23 @@ class UserRepository extends ApiRepository
         if ($data['port'] !== 80) $result .= ":{$data['port']}";
 
         return "$result/";
+    }
+
+    /**
+     * @param $data
+     * @param $id
+     */
+    private function setPhone($data, $id)
+    {
+        $user = $this->find($id);
+
+        if (isset($data['phone'])) {
+            if (NULL === $user->phone) {
+                $user->phone()->create($data);
+            } else {
+                $user->phone->phone = $data['phone'];
+                $user->phone->save();
+            }
+        }
     }
 }

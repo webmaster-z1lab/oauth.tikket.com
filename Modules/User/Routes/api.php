@@ -18,7 +18,11 @@ Route::group([
     Route::apiResource('addresses', 'AddressController')->except('index', 'update');
     Route::apiResource('phones', 'PhoneController')->except('index', 'update');
 
-    Route::group(['prefix' => 'users'], function () {
-        Route::get('{user}/form/profile', 'FormController@profile')->name('users.form.profile');
+    Route::group(['prefix' => 'users/{user}'], function () {
+        Route::patch('cpf', 'UserController@changeCpf')->name('users.change.cpf');
+        Route::patch('password', 'UserController@changePassword')->name('users.change.password');
+        Route::patch('avatar', 'UserController@changeAvatar')->name('users.change.avatar');
+
+        Route::get('form/profile', 'FormController@profile')->name('users.form.profile');
     });
 });

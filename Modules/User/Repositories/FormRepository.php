@@ -23,7 +23,7 @@ class FormRepository
      */
     public function profile(string $user): Form
     {
-        $user = User::find($user);
+        $user = User::where((new User)->getAuthIdentifierName(), $user)->first();
 
         if (NULL === $user) abort(404);
 
