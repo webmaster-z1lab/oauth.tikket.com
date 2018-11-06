@@ -26,7 +26,7 @@ trait HasAvatar
      * @param $name
      * @return string
      */
-    public function avatar($name): string
+    public function avatarFromName($name): string
     {
         $fileName = (string)Str::uuid();
         $path = "{$this->path}/{$fileName}.{$this->extension}";
@@ -35,5 +35,16 @@ trait HasAvatar
         \Storage::put($path, $image->encode());
 
         return $path;
+    }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @return string
+     */
+    public function avatarFromFile($request): string
+    {
+        return $request->file('avatar')->storeAs(
+            $this->path, (string)Str::uuid()
+        );
     }
 }

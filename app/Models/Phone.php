@@ -22,8 +22,8 @@ class Phone extends Model
     ];
 
     protected $attributes = [
-        'phone_verified_at' => NULL,
-        'is_whatsapp'       => FALSE,
+        'verified_at' => NULL,
+        'is_whatsapp' => FALSE,
     ];
 
     protected $casts = [
@@ -58,5 +58,14 @@ class Phone extends Model
         } else {
             $this->attributes['is_whatsapp'] = (bool)$value;
         }
+    }
+
+    /**
+     * @param $value
+     */
+    public function setPhoneAttribute($value)
+    {
+        $this->attributes['area_code'] = substr($value, 0, 2);
+        $this->attributes['phone'] = substr($value, 2);
     }
 }

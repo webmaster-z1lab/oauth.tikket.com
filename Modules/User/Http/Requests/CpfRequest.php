@@ -15,7 +15,7 @@ class CpfRequest extends ApiFormRequest
     public function rules()
     {
         return [
-            'document' => 'bail|required|document|unique:users,cpf',
+            'document' => 'bail|required|document|unique:users',
         ];
     }
 

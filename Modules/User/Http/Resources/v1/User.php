@@ -83,7 +83,7 @@ class User extends Resource
     private function getDocument(string $document)
     {
         if (NULL !== $document) {
-            return '***.***.' . substr($document, 6, 3) . '-' . substr($document, 9, 2);
+            return substr($document, 0, 3) . '.***.***-**';
         }
     }
 }
