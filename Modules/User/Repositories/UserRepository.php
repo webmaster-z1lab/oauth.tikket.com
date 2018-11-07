@@ -97,7 +97,7 @@ class UserRepository extends ApiRepository
      * @param $data
      * @param $id
      */
-    private function setPhone($data, $id)
+    private function setPhone(array $data, string $id)
     {
         $user = $this->find($id);
 

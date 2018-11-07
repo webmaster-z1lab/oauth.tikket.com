@@ -14,7 +14,8 @@ class PasswordRequest extends ApiFormRequest
     public function rules()
     {
         return [
-            'password' => 'required|string|confirmed|min:8',
+            'password'         => 'required|string|confirmed|min:8|required_with:password_confirmation',
+            'current_password' => 'required|string',
         ];
     }
 
@@ -26,5 +27,21 @@ class PasswordRequest extends ApiFormRequest
     public function authorize()
     {
         return TRUE;
+    }
+
+    /**
+     * Configure the validator instance.
+     *
+     * @param  \Illuminate\Validation\Validator $validator
+     * @return void
+     */
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            if (!\Hash::check($this->current_password, \Auth::user()->makeVisible('password')->password))
+                $validator->errors()->add('current_password', 'Your current password is incorrect.');
+        });
+
+        return;
     }
 }
