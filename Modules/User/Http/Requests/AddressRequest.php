@@ -16,11 +16,12 @@ class AddressRequest extends ApiFormRequest
     {
         return [
             'street'     => 'bail|required|string|max:255',
-            'number'     => 'bail|nullable|number',
+            'number'     => 'bail|nullable|integer',
             'complement' => 'bail|nullable|string|max:100',
             'district'   => 'bail|required|string|max:100',
             'city'       => 'bail|required|string|max:100',
             'state'      => 'bail|required|string|max:2',
+            'ibge_id'    => 'bail|required|integer'
         ];
     }
 

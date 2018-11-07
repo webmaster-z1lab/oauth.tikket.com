@@ -28,6 +28,7 @@ class Address extends Model
         'city',
         'state',
         'postal_code',
+        'ibge_id'
     ];
     /**
      * @var array
@@ -36,7 +37,7 @@ class Address extends Model
     /**
      * @var array
      */
-    protected $casts = ['number' => 'integer'];
+    protected $casts = ['number' => 'integer', 'ibge_id' => 'integer'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

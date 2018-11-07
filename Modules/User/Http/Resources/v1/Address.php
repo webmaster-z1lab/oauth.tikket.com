@@ -26,6 +26,7 @@ class Address extends Resource
                 'state'       => $this->state,
                 'postal_code' => $this->postal_code,
                 'formatted'   => $this->formatted,
+                'ibge_id'     => $this->ibge_id,
             ],
         ];
     }

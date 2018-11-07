@@ -10,8 +10,10 @@ namespace Modules\User\Repositories;
 
 
 use App\Models\User;
+use Z1lab\Form\Models\Fieldset;
 use Z1lab\Form\Models\Form;
 use Z1lab\Form\Models\Inputs\Date;
+use Z1lab\Form\Models\Inputs\Mask;
 use Z1lab\Form\Models\Inputs\Selected;
 use Z1lab\Form\Models\Inputs\Text;
 
@@ -28,19 +30,36 @@ class FormRepository
         if (NULL === $user) abort(404);
 
         $form = new Form;
+
+        $fieldset = new Fieldset();
+
         $form->self = route('users.form.profile', $user->user_id);
         $form->action = route('users.update', $user->user_id);
 
         $inputs['name'] = new Text;
-        $inputs['social_name'] = new Text;
-        $inputs['gender'] = new Selected;
+        $inputs['nickname'] = new Text;
+        $inputs['email'] = new Text;
+        $inputs['cpf'] = new Mask;
         $inputs['birth_date'] = new Date;
+        $inputs['phone'] = new Mask;
+
+        $inputs['name']->col('col-md-6')->validate('required');
+        $inputs['nickname']->col('col-md-6')->validate('required');
+        $inputs['email']->type('email')->col('col-md-6')->validate('required|email');
+        $inputs['cpf']->col('col-md-6')->validate('required|cpf')->mask('###.###.###-##');
+        $inputs['cpf']->name = 'cpf';
+        $inputs['birth_date']->col('col-md-6')->validate('required')->format('Y-m-d');
+        $inputs['phone']->name('phone')->col('col-md-6')->validate('required|phone')->mask('(##) ####-####')->mask('(##) #####-####');
+        $inputs['phone']->name = 'phone';
 
         $this->injectData($user->toArray(), $inputs);
 
-        $inputs['gender']->data($this->genders());
+        $fieldset->createMany($inputs);
 
-        $form->createMany($inputs);
+        $fieldset->legend('Informações Pessoais');
+        $fieldset->subtitle('as');
+
+        $form->create($fieldset);
 
         return $form;
     }

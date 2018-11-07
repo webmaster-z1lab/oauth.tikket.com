@@ -90,7 +90,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function setBirthDateAttribute($value)
     {
         if (filled($value) && is_string($value)) {
-            $this->attributes['birth_date'] = Carbon::createFromFormat('d/m/Y', $value);
+            $this->attributes['birth_date'] = Carbon::createFromFormat('Y-m-d', $value);
         } else {
             $this->attributes['birth_date'] = $value;
         }
