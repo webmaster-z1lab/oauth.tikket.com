@@ -39,25 +39,30 @@ class FormRepository
         $inputs['name'] = new Text;
         $inputs['nickname'] = new Text;
         $inputs['email'] = new Text;
-        $inputs['cpf'] = new Mask;
-        $inputs['birth_date'] = new Date;
+        $inputs['document'] = new Mask;
+        $inputs['gender'] = new Selected;
         $inputs['phone'] = new Mask;
+        $inputs['birth_date'] = new Date;
 
         $inputs['name']->col('col-md-6')->validate('required');
         $inputs['nickname']->col('col-md-6')->validate('required');
-        $inputs['email']->type('email')->col('col-md-6')->validate('required|email');
-        $inputs['cpf']->col('col-md-6')->validate('required|cpf')->mask('###.###.###-##');
-        $inputs['cpf']->name = 'cpf';
-        $inputs['birth_date']->col('col-md-6')->validate('required')->format('Y-m-d');
+        $inputs['gender']->col('col-md-4')->validate('required')->data($this->genders());
+        $inputs['document']->col('col-md-4')->validate('required|cpf')->mask('###.###.###-##');
+        $inputs['birth_date']->col('col-md-6')->validate('required')->format('Y-m-d')->time(false);
+        $inputs['birth_date']->min_date = '1900-01-01';
+        $inputs['birth_date']->max_date = 'today';
         $inputs['phone']->name('phone')->col('col-md-6')->validate('required|phone')->mask('(##) ####-####')->mask('(##) #####-####');
         $inputs['phone']->name = 'phone';
 
         $this->injectData($user->toArray(), $inputs);
 
+        if($inputs['document']->value !== '') $inputs['document']->disabled();
+        $inputs['email']->col('col-md-4')->disabled();
+
         $fieldset->createMany($inputs);
 
         $fieldset->legend('Informações Pessoais');
-        $fieldset->subtitle('as');
+        $fieldset->subtitle('Esses dados pessoais não serão compartilhados com ninguém então fique tranquilo.');
 
         $form->create($fieldset);
 
@@ -72,6 +77,7 @@ class FormRepository
         return [
             __('male'),
             __('female'),
+            __('not_declared')
         ];
     }
 

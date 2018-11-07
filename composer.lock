@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ce892702a9fb2aeef72c68ecf3227cfe",
+    "content-hash": "44f35267b848d1982df5e0aa147a6bcb",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1208,16 +1208,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.7.12",
+            "version": "v5.7.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "4cb5bf13e0cd50015f8e6a420a52fa8b90758eb1"
+                "reference": "3ff3110ac14f2b4876acaff289bb55a1af74f02e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/4cb5bf13e0cd50015f8e6a420a52fa8b90758eb1",
-                "reference": "4cb5bf13e0cd50015f8e6a420a52fa8b90758eb1",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/3ff3110ac14f2b4876acaff289bb55a1af74f02e",
+                "reference": "3ff3110ac14f2b4876acaff289bb55a1af74f02e",
                 "shasum": ""
             },
             "require": {
@@ -1283,6 +1283,7 @@
                 "aws/aws-sdk-php": "^3.0",
                 "doctrine/dbal": "^2.6",
                 "filp/whoops": "^2.1.4",
+                "guzzlehttp/guzzle": "^6.3",
                 "league/flysystem-cached-adapter": "^1.0",
                 "mockery/mockery": "^1.0",
                 "moontoast/math": "^1.1",
@@ -1347,7 +1348,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-10-30T14:44:34+00:00"
+            "time": "2018-11-07T12:41:02+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -3870,16 +3871,16 @@
         },
         {
             "name": "z1lab/laravel-vue-form",
-            "version": "v0.0.2",
+            "version": "v0.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/z1lab/laravel-vue-form.git",
-                "reference": "557e87ecad85dbb52c8d62d1a8bc056fb13a5364"
+                "reference": "798ac778b228c6c063b350730e86884769f0f051"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/z1lab/laravel-vue-form/zipball/557e87ecad85dbb52c8d62d1a8bc056fb13a5364",
-                "reference": "557e87ecad85dbb52c8d62d1a8bc056fb13a5364",
+                "url": "https://api.github.com/repos/z1lab/laravel-vue-form/zipball/798ac778b228c6c063b350730e86884769f0f051",
+                "reference": "798ac778b228c6c063b350730e86884769f0f051",
                 "shasum": ""
             },
             "require": {
@@ -3922,7 +3923,7 @@
                 "laravel",
                 "vuejs"
             ],
-            "time": "2018-11-03T00:13:36+00:00"
+            "time": "2018-11-05T22:32:29+00:00"
         },
         {
             "name": "zendframework/zend-diactoros",
@@ -3992,16 +3993,16 @@
     "packages-dev": [
         {
             "name": "barryvdh/laravel-ide-helper",
-            "version": "v2.5.1",
+            "version": "v2.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-ide-helper.git",
-                "reference": "7db1843473e1562d8e0490b51db847d3a1415140"
+                "reference": "981ff45b43e0cf808af0a5a5f40f6369e0e29499"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/7db1843473e1562d8e0490b51db847d3a1415140",
-                "reference": "7db1843473e1562d8e0490b51db847d3a1415140",
+                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/981ff45b43e0cf808af0a5a5f40f6369e0e29499",
+                "reference": "981ff45b43e0cf808af0a5a5f40f6369e0e29499",
                 "shasum": ""
             },
             "require": {
@@ -4062,7 +4063,7 @@
                 "phpstorm",
                 "sublime"
             ],
-            "time": "2018-09-06T18:41:09+00:00"
+            "time": "2018-10-06T09:35:51+00:00"
         },
         {
             "name": "barryvdh/reflection-docblock",
