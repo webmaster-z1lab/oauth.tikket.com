@@ -26,7 +26,7 @@ class AuthController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->only('login');
-        $this->middleware('auth:api')->only('logout');
+        $this->middleware('auth')->only('logout');
     }
 
     /**
@@ -59,8 +59,6 @@ class AuthController extends Controller
      */
     public function logout(Request $request)
     {
-        if ($request->bearerToken() === NULL) $this->sendFailedResponse(Response::HTTP_UNAUTHORIZED);
-
         $token = (new Parser())->parse($request->bearerToken());
 
         $this->revokeTokens($token->getClaim('jti'));

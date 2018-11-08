@@ -9,8 +9,8 @@ return [
     // Has to be in prioritized order, e.g. highest priority first.
     'formatters' => [
         SymfonyException\UnprocessableEntityHttpException::class => Formatters\UnprocessableEntityHttpExceptionFormatter::class,
-        SymfonyException\HttpException::class => Formatters\HttpExceptionFormatter::class,
-        Exception::class => Formatters\ExceptionFormatter::class,
+        SymfonyException\HttpException::class => Z1lab\JsonApi\Formatters\HttpExceptionFormatter::class,
+        Exception::class => Z1lab\JsonApi\Formatters\ExceptionFormatter::class,
     ],
 
     'response_factory' => \Optimus\Heimdal\ResponseFactory::class,

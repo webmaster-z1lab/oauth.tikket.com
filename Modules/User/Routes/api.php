@@ -11,7 +11,7 @@
 |
 */
 Route::group([
-    'middleware' => ['api.v:1'],
+    'middleware' => ['api.v:1', 'auth'],
     'prefix'     => 'v1',
 ], function () {
     Route::apiResource('users', 'UserController')->except('index', 'store');
