@@ -9,6 +9,7 @@
 namespace App\Traits;
 
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Z1lab\JsonApi\Exceptions\ErrorObject;
 
 trait AuthResponses
 {
@@ -33,9 +34,11 @@ trait AuthResponses
      */
     public function sendFailedResponse(int $http_response, array $errors = [])
     {
-        if (empty($errors)) $errors = [$this->username => __('auth.failed')];
+        if (empty($errors)) $errors['email'] = __('auth.failed');
 
-        throw new HttpResponseException(response()->json(['errors' => $errors], $http_response));
+        $error = (new ErrorObject(array_first($errors), $http_response, $errors))->toArray();
+
+        throw new HttpResponseException(response()->json($error, $http_response));
     }
 
     /**
