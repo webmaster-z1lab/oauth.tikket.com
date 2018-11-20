@@ -56,7 +56,11 @@ class FormRepository
 
         $this->injectData($user->toArray(), $inputs);
 
-        if($inputs['document']->value !== '') $inputs['document']->disabled();
+        if($inputs['document']->value !== '') {
+            $inputs['document']->value = substr($inputs['document']->value, 0, 3) . ".***.***-**";
+            $inputs['document']->disabled();
+        }
+
         $inputs['email']->col('col-md-4')->disabled();
 
         $fieldset->createMany($inputs);

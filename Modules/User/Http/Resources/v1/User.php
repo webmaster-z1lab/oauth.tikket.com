@@ -32,7 +32,7 @@ class User extends Resource
                 'avatar'      => $this->avatar,
                 'email'       => $this->email,
                 'gender'      => $this->gender,
-                'birth_date'  => $this->birth_date,
+                'birth_date'  => $this->birth_date->format('Y-m-d'),
             ],
             'relationships' => [
                 'address' => $this->getAddress($this->address),

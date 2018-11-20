@@ -32,7 +32,7 @@ trait HasAvatar
         $path = "{$this->path}/{$fileName}.{$this->extension}";
         $image = \Avatar::create($name)->getImageObject();
 
-        \Storage::put($path, $image->encode());
+        \Storage::put($path, $image->encode()->__toString());
 
         return $path;
     }

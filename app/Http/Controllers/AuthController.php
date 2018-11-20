@@ -7,9 +7,9 @@ use App\Http\Requests\LoginRequest;
 use App\Traits\AuthResponses;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Laravel\Passport\Passport;
 use Lcobucci\JWT\Parser;
-use Illuminate\Http\Response;
 
 class AuthController extends Controller
 {
@@ -48,6 +48,10 @@ class AuthController extends Controller
         }
 
         $result = $user->createToken('login_token');
+
+        //event(new Login('api', $user, FALSE));
+
+        //\Cookie::queue('auth_time', now()->getTimestamp(), 10);
 
         return $this->respondWithToken(Response::HTTP_OK, $result->accessToken,
             $result->token->expires_at->getTimestamp());
