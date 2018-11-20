@@ -23,6 +23,7 @@ class CreateAddressesTable extends Migration
             $table->string('city');
             $table->string('state');
             $table->string('postal_code', 8);
+            $table->integer('ibge_id');
             $table->timestamps();
             $table->softDeletes();
 

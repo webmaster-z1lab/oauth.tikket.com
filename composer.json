@@ -22,7 +22,7 @@
         "predis/predis": "^1.1",
         "respect/validation": "^1.1",
         "z1lab/laravel-json-api": "^0.0",
-        "z1lab/laravel-passport": "v7.0.14-alpha",
+        "z1lab/laravel-passport": "v7.0.16-alpha",
         "z1lab/laravel-vue-form": "^0.0"
     },
     "require-dev": {
