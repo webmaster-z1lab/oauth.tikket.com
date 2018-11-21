@@ -48,15 +48,27 @@ class FormRepository
         $inputs['nickname']->col('col-md-6')->validate('required');
         $inputs['gender']->col('col-md-4')->validate('required')->data($this->genders());
         $inputs['document']->col('col-md-4')->validate('required|cpf')->mask('###.###.###-##');
-        $inputs['birth_date']->col('col-md-6')->validate('required')->format('Y-m-d')->time(false);
+
+        $inputs['birth_date']->col('col-md-6')->validate('required')->format('Y-m-d')->time(FALSE);
         $inputs['birth_date']->min_date = '1900-01-01';
         $inputs['birth_date']->max_date = 'today';
-        $inputs['phone']->name('phone')->col('col-md-6')->validate('required|phone')->mask('(##) ####-####')->mask('(##) #####-####');
+
         $inputs['phone']->name = 'phone';
+        $inputs['phone']->value($user->phone->phone_number);
 
         $this->injectData($user->toArray(), $inputs);
 
-        if($inputs['document']->value !== '') {
+        $inputs['phone']
+            ->name('phone')
+            ->col('col-md-6')
+            ->validate('required|phone')
+            ->mask('(##) ####-####')
+            ->mask('(##) #####-####')
+            ->value($user->phone->phone_number);
+
+        if (NULL !== $user->birth_date) $inputs['birth_date']->value($user->birth_date->format('Y-m-d'));
+
+        if (NULL !== $inputs['document']->value && $inputs['document']->value !== '') {
             $inputs['document']->value = substr($inputs['document']->value, 0, 3) . ".***.***-**";
             $inputs['document']->disabled();
         }
@@ -81,7 +93,7 @@ class FormRepository
         return [
             __('male'),
             __('female'),
-            __('not_declared')
+            __('not_declared'),
         ];
     }
 

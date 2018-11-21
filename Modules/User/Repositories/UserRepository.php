@@ -88,7 +88,7 @@ class UserRepository extends ApiRepository
         $data = parse_url($url);
         $result = "{$data['scheme']}://{$data['host']}";
 
-        if ($data['port'] !== 80) $result .= ":{$data['port']}";
+        if (isset($data['port']) && $data['port'] !== 80) $result .= ":{$data['port']}";
 
         return "$result/";
     }

@@ -18,7 +18,6 @@ class UserController extends ApiController
      */
     public function __construct(UserRepository $repository)
     {
-        $this->middleware('auth');
         parent::__construct($repository, 'User');
     }
 

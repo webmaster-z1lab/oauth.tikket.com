@@ -27,6 +27,7 @@ class Address extends Resource
                 'postal_code' => $this->postal_code,
                 'formatted'   => $this->formatted,
                 'ibge_id'     => $this->ibge_id,
+                'created_at'  => $this->created_at->format('d-m-Y'),
             ],
         ];
     }

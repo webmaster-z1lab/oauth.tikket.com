@@ -97,22 +97,6 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * @return false|null|string
-     */
-    public function getFormattedAddressAttribute()
-    {
-        if (!$this->address()->exists()) return NULL;
-
-        $address = array_only($this->address->toArray(), ['id', 'street', 'number', 'complement', 'district', 'city', 'state', 'postal_code']);
-
-        $address['created_at'] = $this->address->created_at->format('d-m-Y H:i');
-        $address['updated_at'] = $this->address->updated_at->format('d-m-Y H:i');
-        $address['formatted'] = $this->address->formatted;
-
-        return json_encode($address);
-    }
-
-    /**
      * @return string
      */
     public function getAvatarAttribute()

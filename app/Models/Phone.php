@@ -48,6 +48,11 @@ class Phone extends Model
         return "({$this->attributes['area_code']}) " . substr_replace($this->attributes['phone'], '-', $start, 0);
     }
 
+    public function getPhoneNumberAttribute()
+    {
+        return $this->attributes['area_code'] . $this->attributes['phone'];
+    }
+
     /**
      * @param $value
      */

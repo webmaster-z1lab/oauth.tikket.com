@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "38cdbed927f4740aaed6cba1ace6c508",
+    "content-hash": "c12532206e490489cbf01391c42a1744",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -60,16 +60,16 @@
         },
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.72.1",
+            "version": "3.74.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "5e36d7d70917133a244f62ff81d38871669951b5"
+                "reference": "96c8eb175b3e1641237659e08ea869e4ba4b5765"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/5e36d7d70917133a244f62ff81d38871669951b5",
-                "reference": "5e36d7d70917133a244f62ff81d38871669951b5",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/96c8eb175b3e1641237659e08ea869e4ba4b5765",
+                "reference": "96c8eb175b3e1641237659e08ea869e4ba4b5765",
                 "shasum": ""
             },
             "require": {
@@ -139,7 +139,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2018-11-16T21:17:38+00:00"
+            "time": "2018-11-20T21:04:36+00:00"
         },
         {
             "name": "barryvdh/laravel-cors",
@@ -2672,16 +2672,16 @@
         },
         {
             "name": "psr/log",
-            "version": "1.0.2",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/php-fig/log.git",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d"
+                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-fig/log/zipball/4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
-                "reference": "4ebe3a8bf773a19edfe0a84b6585ba3d401b724d",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
+                "reference": "6c001f1daafa3a3ac1d8ff69ee4db8e799a654dd",
                 "shasum": ""
             },
             "require": {
@@ -2715,7 +2715,7 @@
                 "psr",
                 "psr-3"
             ],
-            "time": "2016-10-10T12:19:37+00:00"
+            "time": "2018-11-20T15:27:04+00:00"
         },
         {
             "name": "psr/simple-cache",
@@ -4075,16 +4075,16 @@
         },
         {
             "name": "z1lab/laravel-json-api",
-            "version": "v0.0.4",
+            "version": "v0.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/z1lab/laravel-json-api.git",
-                "reference": "bfd40a3047a74a0318dade63130244e3da749e22"
+                "reference": "887e22a5d306f7411cc90cf36bfd5dea7f25b815"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/z1lab/laravel-json-api/zipball/bfd40a3047a74a0318dade63130244e3da749e22",
-                "reference": "bfd40a3047a74a0318dade63130244e3da749e22",
+                "url": "https://api.github.com/repos/z1lab/laravel-json-api/zipball/887e22a5d306f7411cc90cf36bfd5dea7f25b815",
+                "reference": "887e22a5d306f7411cc90cf36bfd5dea7f25b815",
                 "shasum": ""
             },
             "require": {
@@ -4133,20 +4133,20 @@
                 "laravel",
                 "resource"
             ],
-            "time": "2018-11-13T21:44:42+00:00"
+            "time": "2018-11-21T12:33:43+00:00"
         },
         {
             "name": "z1lab/laravel-passport",
-            "version": "v7.0.14-alpha",
+            "version": "v7.0.16-alpha",
             "source": {
                 "type": "git",
                 "url": "https://github.com/z1lab/laravel-passport.git",
-                "reference": "9d2e0a9678eb9baa0f120f21c3a00886c9171661"
+                "reference": "d8d083254733193e5773bd8259b5bf464a33ab65"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/z1lab/laravel-passport/zipball/9d2e0a9678eb9baa0f120f21c3a00886c9171661",
-                "reference": "9d2e0a9678eb9baa0f120f21c3a00886c9171661",
+                "url": "https://api.github.com/repos/z1lab/laravel-passport/zipball/d8d083254733193e5773bd8259b5bf464a33ab65",
+                "reference": "d8d083254733193e5773bd8259b5bf464a33ab65",
                 "shasum": ""
             },
             "require": {
@@ -4205,7 +4205,7 @@
                 "oauth",
                 "passport"
             ],
-            "time": "2018-11-17T20:31:15+00:00"
+            "time": "2018-11-20T13:31:14+00:00"
         },
         {
             "name": "z1lab/laravel-vue-form",

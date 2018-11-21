@@ -32,11 +32,11 @@ class User extends Resource
                 'avatar'      => $this->avatar,
                 'email'       => $this->email,
                 'gender'      => $this->gender,
-                'birth_date'  => $this->birth_date->format('Y-m-d'),
+                'birth_date'  => $this->birth_date === NULL ? NULL : $this->birth_date->format('d-m-Y'),
+                'phone'       => $this->getPhone($this->phone),
             ],
             'relationships' => [
                 'address' => $this->getAddress($this->address),
-                'phone'   => $this->getPhone($this->phone),
             ],
         ];
     }
@@ -80,7 +80,11 @@ class User extends Resource
         if (NULL === $phone) return NULL;
 
         return [
-            'data'  => api_resource('Phone')->make($phone),
+            'area_code'         => $phone->area_code,
+            'phone'             => $phone->phone,
+            'phone_verified_at' => $phone->phone_verified_at,
+            'is_whatsapp'       => $phone->is_whatsapp,
+            'formatted'         => $phone->formatted_phone,
         ];
     }
 
