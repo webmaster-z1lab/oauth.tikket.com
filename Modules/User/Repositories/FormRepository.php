@@ -53,20 +53,16 @@ class FormRepository
         $inputs['birth_date']->min_date = '1900-01-01';
         $inputs['birth_date']->max_date = 'today';
 
-        $inputs['phone']->name = 'phone';
-        $inputs['phone']->value($user->phone->phone_number);
+        $inputs['phone']
+            ->name('phone')
+            ->col('col-md-6')
+            ->validate('required|phone')
+            ->mask('(##) ####-####')
+            ->mask('(##) #####-####');
 
         $this->injectData($user->toArray(), $inputs);
 
-        if(null !== $user->phone) {
-            $inputs['phone']
-                ->name('phone')
-                ->col('col-md-6')
-                ->validate('required|phone')
-                ->mask('(##) ####-####')
-                ->mask('(##) #####-####')
-                ->value($user->phone->phone_number);
-        }
+        if(null !== $user->phone) $inputs['phone']->value($user->phone->phone_number);
 
         if (NULL !== $user->birth_date) $inputs['birth_date']->value($user->birth_date->format('Y-m-d'));
 
