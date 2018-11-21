@@ -62,7 +62,7 @@ class FormRepository
 
         $this->injectData($user->toArray(), $inputs);
 
-        if(null !== $user->phone) $inputs['phone']->value($user->phone->phone_number);
+        if (NULL !== $user->phone) $inputs['phone']->value($user->phone->phone_number);
 
         if (NULL !== $user->birth_date) $inputs['birth_date']->value($user->birth_date->format('Y-m-d'));
 
