@@ -105,23 +105,40 @@ return [
     */
 
     'redis' => [
+        'client'  => 'predis',
+        'cluster' => env('REDIS_CLUSTER', FALSE),
 
-        'client' => 'predis',
-
-        'default' => [
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'password' => env('REDIS_PASSWORD', null),
-            'port' => env('REDIS_PORT', 6379),
-            'database' => env('REDIS_DB', 0),
+        'clusters' => [
+            'default' => [
+                [
+                    'scheme'             => env('REDIS_SCHEME', 'tcp'),
+                    'host'               => env('REDIS_HOST', '127.0.0.1'),
+                    'password'           => env('REDIS_PASSWORD', NULL),
+                    'port'               => env('REDIS_PORT', 6379),
+                    'database'           => env('REDIS_DATABASE', 0),
+                    'read_write_timeout' => 60,
+                ],
+            ],
+            'options' => [
+                'cluster' => 'redis',
+            ],
         ],
 
         'cache' => [
-            'host' => env('REDIS_HOST', '127.0.0.1'),
-            'password' => env('REDIS_PASSWORD', null),
-            'port' => env('REDIS_PORT', 6379),
-            'database' => env('REDIS_CACHE_DB', 1),
+            'host'               => env('REDIS_HOST', '127.0.0.1'),
+            'password'           => env('REDIS_PASSWORD', NULL),
+            'port'               => env('REDIS_PORT', 6379),
+            'database'           => env('REDIS_CACHE_DB', 1),
+            'read_write_timeout' => 60,
         ],
 
+        'options' => [
+            'parameters' => [
+                'password' => env('REDIS_PASSWORD', NULL),
+                'scheme'   => env('REDIS_SCHEME', 'tcp'),
+            ],
+            'ssl'        => ['verify_peer' => FALSE],
+        ],
     ],
 
 ];
