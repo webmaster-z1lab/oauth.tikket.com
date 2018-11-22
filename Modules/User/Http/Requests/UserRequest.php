@@ -19,7 +19,8 @@ class UserRequest extends ApiFormRequest
             'phone'      => 'bail|required|string|cell_phone',
             'nickname'   => 'bail|nullable|string|min:3|max:50',
             'gender'     => 'bail|nullable|string|max:20',
-            'birth_date' => 'bail|nullable|date',
+            'birth_date' => 'bail|required|date',
+            'document'   => 'bail|filled|document|unique:users'
         ];
     }
 

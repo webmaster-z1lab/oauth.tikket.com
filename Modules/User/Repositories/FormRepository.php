@@ -45,8 +45,8 @@ class FormRepository
         $inputs['birth_date'] = new Date;
 
         $inputs['name']->col('col-md-6')->validate('required');
-        $inputs['nickname']->col('col-md-6')->validate('required');
-        $inputs['gender']->col('col-md-4')->validate('required')->data($this->genders());
+        $inputs['nickname']->col('col-md-6');
+        $inputs['gender']->col('col-md-4')->data($this->genders());
         $inputs['document']->col('col-md-4')->validate('required|cpf')->mask('###.###.###-##');
 
         $inputs['birth_date']->col('col-md-6')->validate('required')->format('Y-m-d')->time(FALSE);
