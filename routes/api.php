@@ -24,7 +24,3 @@ Route::group(['prefix' => 'actions'], function () {
         Route::post('reset', 'RecoveryController@reset');
     });
 });
-
-Route::get('test', function(Request $request) {
-    dd($request->query());
-});
