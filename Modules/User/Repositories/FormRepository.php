@@ -78,6 +78,8 @@ class FormRepository
         $fieldset->legend('Informações Pessoais');
         $fieldset->subtitle('Esses dados pessoais não serão compartilhados com ninguém então fique tranquilo.');
 
+        $form->method('PUT');
+
         $form->create($fieldset);
 
         return $form;
