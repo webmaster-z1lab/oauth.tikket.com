@@ -46,23 +46,24 @@
             <div class="w-lg-80 w-xl-70 mt-lg-9">
                 <div class="mb-6">
                     <h1 class="h2 text-white font-weight-normal">AUTH Server quantofica.com | Um projeto Z1lab</h1>
-                    <p class="text-white-70">Essa é uma extensão do site <a class="text-white font-weight-bold" href="//quantofica.com">quantofica.com</a> que controla o acesso de todos os usuários no sistema.</p>
+                    <p class="text-white-70">Essa é uma extensão do site <a class="text-white font-weight-bold" href="//quantofica.com">quantofica.com</a> que controla o acesso de
+                        todos os usuários no sistema.</p>
                     <p class="text-white-70">Assim como todo o projeto essa é uma solução desenvolvida e matida pela <a class="text-white font-weight-bold" href="//z1lab.com.br">Z1lab</a>.
                     </p>
 
                     <a class="btn btn-white btn-wide text-primary my-4 transition-3d-hover" href="//quantofica.com"><i class="fas fa-globe-americas"></i> Ir para o Site</a>
 
                     <div class="mb-6">
-                        <h6 class="text-white">SERVICES STATUS</h6>
+                        <h6 class="text-white">SERVICES STATUS <a href="#" onclick="checkAgain()"><i id="refresh" class="fas fa-sync-alt fa-spin"></i></a></h6>
 
                         <hr>
 
                         <ul class="list-inline text-white">
-                            <li class="list-inline-item"><i class="fa fa-check-double text-success ml-1"></i> AUTH</li>
-                            <li class="list-inline-item"><i class="fa fa-check-double text-success ml-1"></i> CORE</li>
-                            <li class="list-inline-item"><i class="fa fa-times text-danger ml-1"></i> PAYMENT</li>
-                            <li class="list-inline-item"><i class="fa fa-times text-danger ml-1"></i> MESSAGE</li>
-                            <li class="list-inline-item"><i class="fa fa-check-double text-success ml-1"></i> PORTAL</li>
+                            <li class="list-inline-item" id="auth"><i class="fas fa-spinner fa-spin text-warning ml-1 status-check"></i> AUTH</li>
+                            <li class="list-inline-item" id="core"><i class="fas fa-spinner fa-spin text-warning ml-1 status-check"></i> CORE</li>
+                            <li class="list-inline-item" id="payment"><i class="fas fa-spinner fa-spin text-warning ml-1 status-check"></i> PAYMENT</li>
+                            <li class="list-inline-item" id="message"><i class="fas fa-spinner fa-spin text-warning ml-1 status-check"></i> MESSAGE</li>
+                            <li class="list-inline-item" id="portal"><i class="fas fa-spinner fa-spin text-warning ml-1 status-check"></i> PORTAL</li>
                         </ul>
                     </div>
 
@@ -111,5 +112,75 @@
         </div>
     </div>
 </footer>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+    let servers = [
+        {
+            "id": "payment",
+            "url": "https://payment.quantofica.com",
+        },
+        {
+            "id": "auth",
+            "url": "https://oauth.quantofica.com",
+        },
+        {
+            "id": "portal",
+            "url": "https://quantofica.com",
+        },
+        {
+            "id": "message",
+            "url": "https://message.quantofica.com",
+        },
+        {
+            "id": "core",
+            "url": "https://api.quantofica.com",
+        }
+    ];
+
+    let loadingClass = "fas fa-spinner fa-spin text-warning ml-1 status-check";
+    let successClass = "fas fa-check-double text-success ml-1 status-check";
+    let failedClass = "fas fa-times text-danger ml-1 status-check";
+
+    function checkAgain() {
+        document.getElementById('refresh').classList.add('fa-spin');
+        let list = document.querySelectorAll('.status-check');
+
+        for (let j of list) {
+            j.classList = loadingClass;
+        }
+
+        check();
+    }
+
+    function check() {
+        setTimeout(function () {
+            for (let i of servers) {
+                testServer(i).then(function () {
+                    document.getElementById('refresh').classList.remove('fa-spin');
+                });
+            }
+        }, 1500);
+
+    }
+
+    async function testServer(server) {
+        let target = document.getElementById(server.id).firstChild;
+
+        try {
+            const response = await axios.head(server.url);
+
+            target.classList = (response.status === 200) ? successClass : failedClass;
+        } catch (error) {
+            target.classList = failedClass;
+        }
+    }
+
+    (function () {
+        check()
+    })();
+</script>
+
 </body>
 </html>
