@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Notifications\ResetPasswordNotification;
-use App\Notifications\VerifyEmail;
+use App\Notifications\VerifyEmailNotification;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -125,7 +125,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new VerifyEmail($this->attributes));
+        $this->notify(new VerifyEmailNotification($this->attributes));
     }
 
     protected static function boot()

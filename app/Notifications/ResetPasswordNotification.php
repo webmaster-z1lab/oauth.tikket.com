@@ -2,14 +2,12 @@
 
 namespace App\Notifications;
 
-use App\Models\User;
+use App\Mail\ResetPassword;
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Lang;
-use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
-class ResetPasswordNotification extends Notification
+class ResetPasswordNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
@@ -18,7 +16,7 @@ class ResetPasswordNotification extends Notification
      *
      * @var string
      */
-    public $token;
+    private $token;
     /**
      * @var string
      */
@@ -26,8 +24,10 @@ class ResetPasswordNotification extends Notification
     /**
      * @var array
      */
-    public $user;
-
+    private $user;
+    /**
+     * @var string
+     */
     private $resetRoute = 'password-reset';
 
     /**
@@ -54,32 +54,30 @@ class ResetPasswordNotification extends Notification
     }
 
     /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @param $notifiable
+     * @return ResetPassword
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-            ->subject(Lang::getFromJson('Reset Password Notification'))
-            ->line(Lang::getFromJson('You are receiving this email because we received a password reset request for your account.'))
-            ->action(Lang::getFromJson('Reset Password'), $this->resetUrl())
-            ->line(Lang::getFromJson('If you did not request a password reset, no further action is required.'));
+        return (new ResetPassword($this->user, $this->resetUrl()))->to($this->user['email']);
+    }
+
+    /**
+     * @param $notifiable
+     * @return array
+     */
+    public function toArray($notifiable)
+    {
+        return [
+            'user' => $this->user,
+        ];
     }
 
     /**
      * @return string
      */
-    public function resetUrl()
+    private function resetUrl()
     {
         return "{$this->user['referer']}{$this->resetRoute}?token={$this->token}&email={$this->user['email']}";
-    }
-
-    public function toArray($notifiable)
-    {
-        return [
-            'user' => $this->user
-        ];
     }
 }

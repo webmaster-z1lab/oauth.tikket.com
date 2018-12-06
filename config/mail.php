@@ -60,6 +60,11 @@ return [
         'name' => env('MAIL_FROM_NAME', 'Example'),
     ],
 
+    'reply_to' => [
+        'address' => env('MAIL_REPLY_TO', 'contact@example.com'),
+        'name' => env('APP_NAME', 'Laravel'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | E-Mail Encryption Protocol
@@ -113,7 +118,7 @@ return [
     */
 
     'markdown' => [
-        'theme' => 'default',
+        'theme' => 'quantofica',
 
         'paths' => [
             resource_path('views/vendor/mail'),

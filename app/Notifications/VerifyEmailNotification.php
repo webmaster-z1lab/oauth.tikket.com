@@ -2,21 +2,30 @@
 
 namespace App\Notifications;
 
+use App\Mail\VerifyEmail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Notifications\Messages\MailMessage;
 
-class VerifyEmail extends Notification
+class VerifyEmailNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
+    /**
+     * @var
+     */
     public $user;
-
+    /**
+     * @var string
+     */
     private $confirmationRoute = 'email-confirmation';
 
+    /**
+     * VerifyEmail constructor.
+     *
+     * @param $user
+     */
     public function __construct($user)
     {
         $this->user = $user;
@@ -34,21 +43,12 @@ class VerifyEmail extends Notification
     }
 
     /**
-     * Get the mail representation of the notification.
-     *
-     * @param  mixed $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @param $notifiable
+     * @return VerifyEmail
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-            ->subject(Lang::getFromJson('Verify Email Address'))
-            ->line(Lang::getFromJson('Please click the button below to verify your email address.'))
-            ->action(
-                Lang::getFromJson('Verify Email Address'),
-                $this->verificationUrl()
-            )
-            ->line(Lang::getFromJson('If you did not create an account, no further action is required.'));
+        return (new VerifyEmail($this->user, $this->verificationUrl()))->to($this->user['email']);
     }
 
     /**
