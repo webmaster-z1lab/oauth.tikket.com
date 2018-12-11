@@ -91,9 +91,9 @@ class FormRepository
     private function genders(): array
     {
         return [
-            __('male'),
-            __('female'),
-            __('not_declared'),
+            __('Masculino'),
+            __('Feminino'),
+            __('Não declarado'),
         ];
     }
 
