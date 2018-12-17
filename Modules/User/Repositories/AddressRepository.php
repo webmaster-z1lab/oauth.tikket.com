@@ -25,6 +25,7 @@ class AddressRepository
 
     /**
      * @param string $id
+     *
      * @return User
      */
     public function user(string $id)
@@ -41,13 +42,14 @@ class AddressRepository
     /**
      * @param array  $data
      * @param string $user
+     *
      * @return User
      */
     public function insert(array $data, string $user)
     {
         $user = $this->user($user);
 
-        if(NULL !== $user->address()) $user->address()->delete();
+        if (NULL !== $user->address()) $user->address()->delete();
 
         $user->address()->create($data);
 
@@ -56,6 +58,7 @@ class AddressRepository
 
     /**
      * @param string $user
+     *
      * @return User
      */
     public function destroy(string $user)
@@ -69,6 +72,7 @@ class AddressRepository
 
     /**
      * @param string $id
+     *
      * @return Address|Address[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
     public function show(string $id)
