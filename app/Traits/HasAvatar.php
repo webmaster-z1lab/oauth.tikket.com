@@ -16,7 +16,7 @@ trait HasAvatar
     /**
      * @var string
      */
-    protected $extension = 'jpg';
+    protected $extension = 'webp';
     /**
      * @var string
      */
@@ -32,7 +32,7 @@ trait HasAvatar
         $path = "{$this->path}/{$fileName}.{$this->extension}";
         $image = \Avatar::create($name)->getImageObject();
 
-        \Storage::put($path, $image->encode()->__toString());
+        \Storage::put($path, $image->encode($this->extension, 80)->__toString());
 
         return $path;
     }
