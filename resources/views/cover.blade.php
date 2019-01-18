@@ -3,16 +3,16 @@
 <head>
     <meta charset="utf-8">
 
-    <title>AUTH Server quantofica.com | Um projeto Z1lab</title>
+    <title>AUTH Server tikket.com | Um projeto Z1lab</title>
 
     <meta name="robots" content="no-index, no-follow">
     <meta name="author" content="z1lab.com.br">
     <meta name="locale" content="pt-BR">
     <meta name="theme-color" content="#6FBA00">
-    <meta name="site_name" content="quantofica.com">
+    <meta name="site_name" content="tikket.com">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="https://cdn.z1lab.com.br/images/quantofica/favicon.png">
+    <link rel="shortcut icon" href="https://cdn.z1lab.com.br/images/tikket/favicon.ico">
     <link href="//fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
           crossorigin="anonymous">
@@ -25,7 +25,7 @@
         <div id="logoAndNav" class="container">
             <nav class="navbar navbar-expand u-header__navbar">
                 <a class="" href="/" aria-label="quantofica.com">
-                    <img src="https://cdn.z1lab.com.br/images/quantofica/logo.png" alt="Logo quantofica.com" width="200px">
+                    <img src="https://cdn.z1lab.com.br/images/tikket/ticket_gradient.png" alt="Logo tikket.com" width="50px">
                 </a>
 
                 <div class="ml-auto">
@@ -45,13 +45,13 @@
         <div class="container d-lg-flex align-items-lg-center min-height-lg-100vh space-bottom-2 space-top-4 space-bottom-lg-3 space-lg-0">
             <div class="w-lg-80 w-xl-70 mt-lg-9">
                 <div class="mb-6">
-                    <h1 class="h2 text-white font-weight-normal">AUTH Server quantofica.com | Um projeto Z1lab</h1>
-                    <p class="text-white-70">Essa é uma extensão do site <a class="text-white font-weight-bold" href="//quantofica.com">quantofica.com</a> que controla o acesso de
+                    <h1 class="h2 text-white font-weight-normal">AUTH Server tikket.com | Um projeto Z1lab</h1>
+                    <p class="text-white-70">Essa é uma extensão do site <a class="text-white font-weight-bold" href="//tikket.com">tikket.com</a> que controla o acesso de
                         todos os usuários no sistema.</p>
                     <p class="text-white-70">Assim como todo o projeto essa é uma solução desenvolvida e matida pela <a class="text-white font-weight-bold" href="//z1lab.com.br">Z1lab</a>.
                     </p>
 
-                    <a class="btn btn-white btn-wide text-primary my-4 transition-3d-hover" href="//quantofica.com"><i class="fas fa-globe-americas"></i> Ir para o Site</a>
+                    <a class="btn btn-white btn-wide text-primary my-4 transition-3d-hover" href="//tikket.com"><i class="fas fa-globe-americas"></i> Ir para o Site</a>
 
                     <div class="mb-6">
                         <h6 class="text-white">SERVICES STATUS <a href="#" onclick="checkAgain()"><i id="refresh" class="fas fa-sync-alt fa-spin"></i></a></h6>
@@ -88,17 +88,17 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center space-1">
 
-            <p class="small text-white mb-0">&copy; quantofica.com. Z1Lab 2018.</p>
+            <p class="small text-white mb-0">&copy; tikket.com. Z1Lab 2018.</p>
 
             <ul class="list-inline mb-0 text-sm-right">
                 <li class="list-inline-item">
-                    <a class="btn btn-sm btn-icon btn-soft-light btn-bg-transparent" href="//facebook.com/quantofica">
+                    <a class="btn btn-sm btn-icon btn-soft-light btn-bg-transparent" href="//facebook.com/tikket">
                         <span class="fab fa-facebook-f btn-icon__inner"></span>
                     </a>
                 </li>
 
                 <li class="list-inline-item">
-                    <a class="btn btn-sm btn-icon btn-soft-light btn-bg-transparent" href="//instagram.com/quantofica">
+                    <a class="btn btn-sm btn-icon btn-soft-light btn-bg-transparent" href="//instagram.com/tikket">
                         <span class="fab fa-instagram btn-icon__inner"></span>
                     </a>
                 </li>
@@ -119,23 +119,23 @@
     let servers = [
         {
             "id": "payment",
-            "url": "https://payment.quantofica.com",
+            "url": "https://payment.tikket.com",
         },
         {
             "id": "auth",
-            "url": "https://oauth.quantofica.com",
+            "url": "https://oauth.tikket.com",
         },
         {
             "id": "portal",
-            "url": "https://quantofica.com",
+            "url": "https://tikket.com",
         },
         {
             "id": "message",
-            "url": "https://message.quantofica.com",
+            "url": "https://message.tikket.com",
         },
         {
             "id": "core",
-            "url": "https://api.quantofica.com",
+            "url": "https://api.tikket.com",
         }
     ];
 
