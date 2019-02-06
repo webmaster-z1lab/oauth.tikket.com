@@ -7,13 +7,13 @@
  */
 
 return [
-    'name'         => 'Nome',
-    'email'        => 'Email',
-    'nickname'     => 'Como gostaria de ser chamado',
-    'document'     => 'CPF',
+    'name'         => 'Seu nome',
+    'email'        => 'Seu email',
+    'nickname'     => 'Como gostaria de ser chamado?',
+    'document'     => 'Seu CPF',
     'gender'       => 'Sexo',
-    'phone'        => 'Telefone',
-    'birth_date'   => 'Data de nascimento',
+    'phone'        => 'Seu telefone',
+    'birth_date'   => 'Sua data de nascimento',
     'male'         => 'Masculino',
     'female'       => 'Feminino',
     'not_declared' => 'Não declarado',

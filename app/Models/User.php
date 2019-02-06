@@ -99,6 +99,16 @@ class User extends Authenticatable implements MustVerifyEmail
     /**
      * @return string
      */
+    public function getShortNameAttribute()
+    {
+        if (NULL !== $this->attributes['nickname']) return explode(' ', $this->attributes['nickname'])[0];
+
+        return explode(' ', $this->attributes['name'])[0];
+    }
+
+    /**
+     * @return string
+     */
     public function getAvatarAttribute()
     {
         return \Storage::url($this->attributes['avatar']);
