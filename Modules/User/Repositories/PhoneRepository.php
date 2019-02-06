@@ -10,12 +10,82 @@ namespace Modules\User\Repositories;
 
 
 use App\Models\Phone;
-use Z1lab\JsonApi\Repositories\ApiRepository;
+use App\Models\User;
+use Z1lab\JsonApi\Traits\CacheTrait;
 
-class PhoneRepository extends ApiRepository
+class PhoneRepository
 {
-    public function __construct(Phone $model)
+    use CacheTrait;
+
+    /**
+     * @var \App\Models\User
+     */
+    protected $model;
+
+    /**
+     * PhoneRepository constructor.
+     *
+     * @param \App\Models\User $model
+     */
+    public function __construct(User $model)
     {
-        parent::__construct($model, 'phone');
+        $this->model = $model;
+    }
+
+    /**
+     * @param string $id
+     *
+     * @return User
+     */
+    public function user(string $id)
+    {
+        $user = \Cache::remember("address-$id", $this->cacheDefault(), function () use ($id) {
+            return $this->model->where($this->model->getAuthIdentifierName(), $id)->first();
+        });
+
+        if (NULL === $user) abort(404);
+
+        return $user;
+    }
+
+    /**
+     * @param array  $data
+     * @param string $user
+     *
+     * @return User
+     */
+    public function insert(array $data, string $user)
+    {
+        $user = $this->user($user);
+
+        if (NULL !== $user->phone()) $user->phone()->delete();
+
+        $user->phone()->create($data);
+
+        return $user->fresh();
+    }
+
+    /**
+     * @param string $user
+     *
+     * @return User
+     */
+    public function destroy(string $user)
+    {
+        $user = $this->user($user);
+
+        $user->phone()->delete();
+
+        return $user->fresh();
+    }
+
+    /**
+     * @param string $id
+     *
+     * @return Phone|Phone[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
+     */
+    public function show(string $id)
+    {
+        return Phone::find($id);
     }
 }
