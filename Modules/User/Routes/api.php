@@ -24,5 +24,7 @@ Route::group([
         Route::patch('avatar', 'UserController@changeAvatar')->name('users.change.avatar');
 
         Route::apiResource('addresses', 'AddressController')->only('show', 'store');
+
+        Route::apiResource('phones', 'PhoneController')->only('show', 'store');
     });
 });
