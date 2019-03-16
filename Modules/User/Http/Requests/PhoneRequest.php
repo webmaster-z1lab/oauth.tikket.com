@@ -15,8 +15,8 @@ class PhoneRequest extends ApiFormRequest
     public function rules()
     {
         return [
-            'area_code'   => 'bail|required|number|digits:2',
-            'phone'       => 'bail|required|number|min:8|max:9',
+            'area_code'   => 'bail|required|digits:2',
+            'phone'       => 'bail|required|digits_between:8,9',
             'is_whatsapp' => 'bail|required|boolean',
         ];
     }
