@@ -15,7 +15,7 @@ class CpfRequest extends ApiFormRequest
     public function rules()
     {
         return [
-            'document' => 'bail|required|document|unique:users',
+            'document' => 'bail|required|cpf|unique:users,document,' . \Route::current()->parameter('user') . ',user_id',
         ];
     }
 
