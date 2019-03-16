@@ -106,7 +106,7 @@ class FormRepository
         foreach ($data as $key => $value) {
             if (isset($inputs[$key])) {
                 $inputs[$key]->name = $key;
-                $inputs[$key]->value = $value;
+                $inputs[$key]->value = NULL !== $value ? $value : '';
             }
         }
     }

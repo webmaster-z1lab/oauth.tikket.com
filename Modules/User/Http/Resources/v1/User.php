@@ -16,6 +16,7 @@ class User extends Resource
      * Transform the resource into an array.
      *
      * @param  \Illuminate\Http\Request
+     *
      * @return array
      */
     public function toArray($request)
@@ -25,6 +26,7 @@ class User extends Resource
             'id'            => $this->user_id,
             'attributes'    => [
                 'name'        => $this->name,
+                'short_name'  => $this->short_name,
                 'document'    => $this->getDocument($this->document),
                 'social_name' => $this->social_name,
                 'nickname'    => $this->nickname,
@@ -34,6 +36,7 @@ class User extends Resource
                 'gender'      => $this->gender,
                 'birth_date'  => $this->birth_date === NULL ? NULL : $this->birth_date->format('Y-m-d'),
                 'phone'       => $this->getPhone($this->phone),
+                'updated_at'  => $this->updated_at->format('d/m/Y à\s H:i:s'),
             ],
             'relationships' => [
                 'address' => $this->getAddress($this->address),
@@ -57,6 +60,7 @@ class User extends Resource
 
     /**
      * @param $address
+     *
      * @return array|null
      */
     private function getAddress($address)
@@ -73,6 +77,7 @@ class User extends Resource
 
     /**
      * @param $phone
+     *
      * @return array|null
      */
     private function getPhone($phone)
@@ -90,6 +95,7 @@ class User extends Resource
 
     /**
      * @param string|NULL $document
+     *
      * @return string
      */
     private function getDocument(string $document = NULL)
