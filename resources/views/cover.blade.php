@@ -3,13 +3,13 @@
 <head>
     <meta charset="utf-8">
 
-    <title>AUTH Server tikket.com | Um projeto Z1lab</title>
+    <title>AUTH Server tikket.com.br | Um projeto Z1lab</title>
 
     <meta name="robots" content="no-index, no-follow">
     <meta name="author" content="z1lab.com.br">
     <meta name="locale" content="pt-BR">
     <meta name="theme-color" content="#6FBA00">
-    <meta name="site_name" content="tikket.com">
+    <meta name="site_name" content="tikket.com.br">
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="https://cdn.z1lab.com.br/images/tikket/favicon.ico">
@@ -24,10 +24,6 @@
     <div class="u-header__section">
         <div id="logoAndNav" class="container">
             <nav class="navbar navbar-expand u-header__navbar">
-                <a class="" href="/" aria-label="quantofica.com">
-                    <img src="https://cdn.z1lab.com.br/images/tikket/ticket_gradient.png" alt="Logo tikket.com" width="50px">
-                </a>
-
                 <div class="ml-auto">
                     <a class="text-white" href="//z1lab.com.br" target="_blank">
                         Um projeto <img src="https://cdn.z1lab.com.br/images/z1lab/logo/logo_white.svg" alt="Logo Z1lab" width="75px">
@@ -38,16 +34,15 @@
     </div>
 </header>
 
-
 <main id="content" role="main">
     <!-- Hero Section -->
     <div class="d-lg-flex" style="background: url(https://cdn.z1lab.com.br/template/front/2.0.1/img/bg-shapes/bg4.png) no-repeat right;">
         <div class="container d-lg-flex align-items-lg-center min-height-lg-100vh space-bottom-2 space-top-4 space-bottom-lg-3 space-lg-0">
             <div class="w-lg-80 w-xl-70 mt-lg-9">
                 <div class="mb-6">
-                    <h1 class="h2 text-white font-weight-normal">AUTH Server tikket.com | Um projeto Z1lab</h1>
-                    <p class="text-white-70">Essa é uma extensão do site <a class="text-white font-weight-bold" href="//tikket.com">tikket.com</a> que controla o acesso de
-                        todos os usuários no sistema.</p>
+                    <h1 class="text-white font-weight-normal"><i class="fas fa-ticket-alt mr-1"></i> AUTH Server tikket.com.br <br><small>Um projeto Z1lab</small></h1>
+                    <p class="text-white-70">Essa é uma extensão do site <a class="text-white font-weight-bold" href="//tikket.com.br">tikket.com.br</a> que controla o acesso de
+                        todos os usuários ao sistema.</p>
                     <p class="text-white-70">Assim como todo o projeto essa é uma solução desenvolvida e matida pela <a class="text-white font-weight-bold" href="//z1lab.com.br">Z1lab</a>.
                     </p>
 
@@ -62,7 +57,7 @@
                             <li class="list-inline-item" id="auth"><i class="fas fa-spinner fa-spin text-warning ml-1 status-check"></i> AUTH</li>
                             <li class="list-inline-item" id="core"><i class="fas fa-spinner fa-spin text-warning ml-1 status-check"></i> CORE</li>
                             <li class="list-inline-item" id="payment"><i class="fas fa-spinner fa-spin text-warning ml-1 status-check"></i> PAYMENT</li>
-                            <li class="list-inline-item" id="message"><i class="fas fa-spinner fa-spin text-warning ml-1 status-check"></i> MESSAGE</li>
+                            <li class="list-inline-item" id="admin"><i class="fas fa-spinner fa-spin text-warning ml-1 status-check"></i> ADMIN</li>
                             <li class="list-inline-item" id="portal"><i class="fas fa-spinner fa-spin text-warning ml-1 status-check"></i> PORTAL</li>
                         </ul>
                     </div>
@@ -74,7 +69,7 @@
                         <li class="list-inline-item" title="Amazon Web Services"><i class="fab fa-2x fa-aws"></i></li>
                         <li class="list-inline-item" title="Openid"><i class="fab fa-2x fa-openid"></i></li>
                         <li class="list-inline-item" title="Discord"><i class="fab fa-2x fa-discord"></i></li>
-                        <li class="list-inline-item" title="BitBucket"><i class="fab fa-2x fa-bitbucket"></i></li>
+                        <li class="list-inline-item" title="Github"><i class="fab fa-2x fa-github"></i></li>
                         <li class="list-inline-item" title="The Force"><i class="fas fa-2x fa-jedi"></i></li>
                     </ul>
                 </div>
@@ -119,23 +114,23 @@
     let servers = [
         {
             "id": "payment",
-            "url": "https://payment.tikket.com",
+            "url": "https://payment.tikket.com.br",
         },
         {
             "id": "auth",
-            "url": "https://oauth.tikket.com",
+            "url": "https://oauth.tikket.com.br",
         },
         {
             "id": "portal",
-            "url": "https://tikket.com",
+            "url": "https://tikket.com.br",
         },
         {
-            "id": "message",
-            "url": "https://message.tikket.com",
+            "id": "admin",
+            "url": "https://admin.tikket.com.br",
         },
         {
             "id": "core",
-            "url": "https://api.tikket.com",
+            "url": "https://api.tikket.com.br",
         }
     ];
 
