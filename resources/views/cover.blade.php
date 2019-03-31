@@ -83,7 +83,7 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center space-1">
 
-            <p class="small text-white mb-0">&copy; tikket.com. Z1Lab 2018.</p>
+            <p class="small text-white mb-0">&copy; tikket.com. Z1Lab {{ date('Y') }}.</p>
 
             <ul class="list-inline mb-0 text-sm-right">
                 <li class="list-inline-item">
