@@ -47,6 +47,7 @@ class UserRepository extends ApiRepository
     public function update(array $data, string $id)
     {
         if (isset($data['phone'])) $this->setPhone($data, $id);
+        if (isset($data['document']) && substr_count($data['document'], '*') > 0) unset($data['document']);
 
         return parent::update($data, $id);
     }
