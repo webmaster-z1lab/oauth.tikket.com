@@ -14,6 +14,7 @@
         "ext-json": "*",
         "arcanedev/log-viewer": "^4.6",
         "aws/aws-sdk-php": "^3.74",
+        "bugsnag/bugsnag-laravel": "^2.0",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
