@@ -14,7 +14,7 @@ class VerifyEmail extends Mailable
      * @var array
      */
     public $image = [
-        'source' => 'https://cdn.z1lab.com.br/images/undraw/png/undraw_hello_aeia.png',
+        'source' => 'https://d35c048n9fix3e.cloudfront.net/images/undraw/png/undraw_hello_aeia.png',
         'text'   => 'Welcome and confirm your email',
     ];
     /**

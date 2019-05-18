@@ -21,7 +21,7 @@ class ResetPassword extends Mailable
      * @var array
      */
     public $image = [
-        'source' => 'https://cdn.z1lab.com.br/images/undraw/png/undraw_authentication_fsn5.png',
+        'source' => 'https://d35c048n9fix3e.cloudfront.net/images/undraw/png/undraw_authentication_fsn5.png',
         'text'   => 'Reset Password Notification',
     ];
     /**

@@ -26,7 +26,7 @@
             <nav class="navbar navbar-expand u-header__navbar">
                 <div class="ml-auto">
                     <a class="text-white" href="//z1lab.com.br" target="_blank">
-                        Um projeto <img src="https://d35c048n9fix3e.cloudfront.net/images/z1lab/logo/logo_white.svg" alt="Logo Z1lab" width="75px">
+                        Um projeto <img src="https://d35c048n9fix3e.cloudfront.net/images/z1lab/logo/logo_white.svg" alt="z1lab.com.br" width="75px">
                     </a>
                 </div>
             </nav>
@@ -40,7 +40,8 @@
         <div class="container d-lg-flex align-items-lg-center min-height-lg-100vh space-bottom-2 space-top-4 space-bottom-lg-3 space-lg-0">
             <div class="w-lg-80 w-xl-70 mt-lg-9">
                 <div class="mb-6">
-                    <h1 class="text-white font-weight-normal"><i class="fas fa-ticket-alt mr-1"></i> AUTH Server tikket.com.br <br><small>Um projeto Z1lab</small></h1>
+                    <img src="https://d35c048n9fix3e.cloudfront.net/images/tikket/logo-white.svg" alt="Logo Tikket" width="250px" class="mb-3">
+                    <h1 class="text-white font-weight-normal">AUTH Server - <small>Um projeto Z1lab</small></h1>
                     <p class="text-white-70">Essa é uma extensão do site <a class="text-white font-weight-bold" href="//tikket.com.br">tikket.com.br</a> que controla o acesso de
                         todos os usuários ao sistema.</p>
                     <p class="text-white-70">Assim como todo o projeto essa é uma solução desenvolvida e matida pela <a class="text-white font-weight-bold" href="//z1lab.com.br">Z1lab</a>.
@@ -83,17 +84,17 @@
     <div class="container">
         <div class="d-flex justify-content-between align-items-center space-1">
 
-            <p class="small text-white mb-0">&copy; tikket.com. Z1Lab {{ date('Y') }}.</p>
+            <p class="small text-white mb-0">&copy; Tikket. Z1Lab {{ date('Y') }}.</p>
 
             <ul class="list-inline mb-0 text-sm-right">
                 <li class="list-inline-item">
-                    <a class="btn btn-sm btn-icon btn-soft-light btn-bg-transparent" href="//facebook.com/tikket">
+                    <a class="btn btn-sm btn-icon btn-soft-light btn-bg-transparent" href="//facebook.com/tikketeventos">
                         <span class="fab fa-facebook-f btn-icon__inner"></span>
                     </a>
                 </li>
 
                 <li class="list-inline-item">
-                    <a class="btn btn-sm btn-icon btn-soft-light btn-bg-transparent" href="//instagram.com/tikket">
+                    <a class="btn btn-sm btn-icon btn-soft-light btn-bg-transparent" href="//instagram.com/tikketeventos">
                         <span class="fab fa-instagram btn-icon__inner"></span>
                     </a>
                 </li>
