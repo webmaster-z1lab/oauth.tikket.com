@@ -27,9 +27,9 @@ class VerifyEmailNotification extends Notification implements ShouldQueue
      *
      * @param $user
      */
-    public function __construct(User $user)
+    public function __construct($user)
     {
-        $this->user = $user->fresh();
+        $this->user = $user;
     }
 
     /**

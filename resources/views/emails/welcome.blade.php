@@ -20,7 +20,7 @@
         <tr>
             <td align="center" valign="top"
                 style="font-family:'Open Sans', sans-serif, Verdana; font-size:15px; color:#000000; font-weight:normal; line-height:24px; padding:5px 25px;">
-                Olá <b>{{ $user->name }}</b>, você acaba de se cadastrar no site <a style="color: #000000" href="http://tikket.com.br">tikket.com.br</a> e sua conta está pronta
+                Olá <b>{{ $user['name'] }}</b>, você acaba de se cadastrar no site <a style="color: #000000" href="http://tikket.com.br">tikket.com.br</a> e sua conta está pronta
                 para começar a comprar e vender ingressos online.
             </td>
         </tr>

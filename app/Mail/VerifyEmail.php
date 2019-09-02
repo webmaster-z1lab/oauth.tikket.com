@@ -39,7 +39,7 @@ class VerifyEmail extends Mailable
      * @param        $user
      * @param string $verifyLink
      */
-    public function __construct(User $user, $verifyLink)
+    public function __construct($user, $verifyLink)
     {
         $this->user = $user;
         $this->button = [
