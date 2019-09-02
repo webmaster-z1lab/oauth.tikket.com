@@ -3,6 +3,7 @@
 namespace App\Notifications;
 
 use App\Mail\VerifyEmail;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -26,9 +27,9 @@ class VerifyEmailNotification extends Notification implements ShouldQueue
      *
      * @param $user
      */
-    public function __construct($user)
+    public function __construct(User $user)
     {
-        $this->user = $user;
+        $this->user = $user->fresh();
     }
 
     /**

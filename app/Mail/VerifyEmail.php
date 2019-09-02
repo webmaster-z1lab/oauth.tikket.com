@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -20,7 +21,7 @@ class VerifyEmail extends Mailable
     /**
      * @var array
      */
-    public $url;
+    public $button;
     /**
      * @var
      */
@@ -28,9 +29,9 @@ class VerifyEmail extends Mailable
     /**
      * @var string
      */
-    public $subject = 'Bem-vindo ao quantofica.com';
+    public $subject = 'Bem-vindo ao Tikket.com.br';
 
-    public $description = 'Seja bem vindo ao quantofica.com. Por favor confirme o seu e-mail';
+    public $description = 'Seja bem vindo ao Tikket. Por favor confirme o seu e-mail';
 
     /**
      * VerifyEmail constructor.
@@ -38,12 +39,12 @@ class VerifyEmail extends Mailable
      * @param        $user
      * @param string $verifyLink
      */
-    public function __construct($user, $verifyLink)
+    public function __construct(User $user, $verifyLink)
     {
         $this->user = $user;
-        $this->url = [
+        $this->button = [
             'link' => $verifyLink,
-            'text' => 'Confirmar email',
+            'text' => 'Confirmar meu e-mail',
         ];
     }
 
@@ -54,6 +55,6 @@ class VerifyEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.notifications.verify-email');
+        return $this->view('emails.welcome');
     }
 }

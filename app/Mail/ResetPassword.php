@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -16,7 +17,7 @@ class ResetPassword extends Mailable
     /**
      * @var array
      */
-    public $url;
+    public $button;
     /**
      * @var array
      */
@@ -30,15 +31,17 @@ class ResetPassword extends Mailable
     public $subject = 'Recuperação de senha';
 
     public $description = 'Recuperação de senha. Para criar uma nova senha acesse o link do email.';
+
     /**
-     * Create a new message instance.
+     * ResetPassword constructor.
      *
-     * @return void
+     * @param  \App\Models\User  $user
+     * @param  string            $resetLink
      */
-    public function __construct($user, $resetLink)
+    public function __construct(User $user, string $resetLink)
     {
         $this->user = $user;
-        $this->url = [
+        $this->button = [
             'link' => $resetLink,
             'text' => 'Trocar senha',
         ];
@@ -51,6 +54,6 @@ class ResetPassword extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.notifications.reset-password');
+        return $this->view('emails.reset-password');
     }
 }

@@ -77,7 +77,6 @@
             </div>
         </div>
     </div>
-    <!-- End Hero Section -->
 </main>
 
 <footer class="position-md-absolute right-md-0 bottom-md-0 left-md-0">
